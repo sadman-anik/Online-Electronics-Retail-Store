@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+
+<h:head>
+    <title>Main</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
+<h:body>
+<div class="page-container">
+
+    <h1 class="page-header">Ebusiness: Product, Customer and Order Management</h1>
+
+    <div class="message">
+        <h:messages globalOnly="false"/>
+    </div>
+
+    <h2>PRODUCTS</h2>
+    <h:link outcome="/product/newTablet.xhtml" value="Create a New Tablet"/> |
+    <h:link outcome="/product/listTablets.xhtml" value="The Stock of Tablets"/> |
+    <h:link outcome="/product/searchTablet.xhtml" value="Search for a Tablet"/>
+
+    <br/><br/>
+
+    <h:link outcome="/product/newSmartwatch.xhtml" value="Create a New Smartwatch"/> |
+    <h:link outcome="/product/listSmartwatches.xhtml" value="The Stock of Smartwatches"/> |
+    <h:link outcome="/product/searchSmartwatch.xhtml" value="Search for a Smartwatch"/>
+
+    <h2>CUSTOMERS</h2>
+    <h:link outcome="/customer/newCustomer.xhtml" value="Create a New Customer"/> |
+    <h:link outcome="/customer/listCustomers.xhtml" value="List of Customers"/> |
+    <h:link outcome="/customer/searchCustomer.xhtml" value="Search for a Customer"/>
+
+    <h2>ORDERS</h2>
+    <h:link outcome="/order/newOrder.xhtml" value="Create a New Order"/> |
+    <h:link outcome="/order/listOrders.xhtml" value="List of Orders"/> |
+    <h:link outcome="/order/searchOrder.xhtml" value="Search for an Order"/>
+
+    <div class="nav-links">
+        <h:link outcome="/default.xhtml" value="Main Page"/> |
+        <h:link outcome="/logout.xhtml" value="Logout" rendered="#{authBean.logged}"/>
+    </div>
+
+</div>
+</h:body>
+</html>

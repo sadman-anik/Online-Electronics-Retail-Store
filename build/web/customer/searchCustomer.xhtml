@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+<h:head>
+    <h:outputStylesheet library="css" name="style.css"/><title>Search Customer</title></h:head>
+<h:body>
+<div class="page-container">
+<h1 class="page-header">Search for a Customer</h1>
+<div class="message"><h:messages globalOnly="false"/></div>
+
+<h:form>
+<h:panelGrid columns="2"><h:outputLabel value="Name"/><h:inputText value="#{customerController.searchName}"/></h:panelGrid>
+<h:commandButton value="Search for a customer" action="#{customerController.doSearchCustomer}"/>
+</h:form>
+<h:link outcome="listCustomers.xhtml" value="Customer List"/>
+
+<div class="nav-links">
+<h:link outcome="/default.xhtml" value="Main Page"/> |
+<h:commandLink value="Logout" action="#{authBean.logout}" rendered="#{authBean.logged}"/>
+</div>
+</div>
+</h:body>
+</html>

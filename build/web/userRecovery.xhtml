@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+<h:head>
+    <h:outputStylesheet library="css" name="style.css"/><title>Recover Account</title></h:head>
+<h:body>
+<div class="page-container">
+<h1 class="page-header">Recover Your Account</h1>
+<div class="message"><h:messages globalOnly="false"/></div>
+
+<p>Retrieve the recovery code from your email and enter below.</p>
+<h:form>
+    <h:panelGrid columns="2">
+        <h:outputLabel value="Recovery Code"/>
+        <h:inputText value="#{authBean.verificationcode}"/>
+        <h:outputLabel value="First Name"/>
+        <h:outputText value="#{authBean.recoveryUser.firstname}"/>
+        <h:outputLabel value="Last Name"/>
+        <h:outputText value="#{authBean.recoveryUser.lastname}"/>
+        <h:outputLabel value="Username"/>
+        <h:outputText value="#{authBean.recoveryUser.username}"/>
+        <h:outputLabel value="New Password"/>
+        <h:inputSecret value="#{authBean.password}"/>
+        <h:outputLabel value="New Password Verify"/>
+        <h:inputSecret value="#{authBean.passwordv}"/>
+    </h:panelGrid>
+    <h:commandButton value="Recover" action="#{authBean.resetUser}"/>
+</h:form>
+
+<div class="nav-links">
+<h:link outcome="/default.xhtml" value="Main Page"/> |
+<h:commandLink value="Logout" action="#{authBean.logout}" rendered="#{authBean.logged}"/>
+</div>
+</div>
+</h:body>
+</html>
