@@ -1,90 +1,75 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core">
 
 <h:head>
-    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet library="css" name="style.css" />
     <title>Register</title>
 </h:head>
 
 <h:body>
 
     <div class="page-container">
-<h1 class="page-header">
-        Register Your Account
-    </h1>
+        <h1 class="page-header">
+            Register Your Account
+        </h1>
 
-    <div class="message"><h:messages globalOnly="false"/></div>
+        <div class="message">
+            <h:messages globalOnly="false" />
+        </div>
 
-    <p>Retrieve the verification code from your email and enter below.</p>
+        <p>Retrieve the verification code from your email and enter below.</p>
 
-    <h:form>
+        <h:form>
 
-        <h:panelGrid columns="2" cellpadding="5">
+            <h:panelGrid columns="2" cellpadding="5">
 
-            <h:outputLabel for="verificationcode" value="Verification Code"/>
-            <h:inputText id="verificationcode"
-                         value="#{authBean.verificationcode}"
-                         required="true"
-                         requiredMessage="Verification code is required."/>
+                <h:outputLabel for="verificationcode" value="Verification Code" />
+                <h:inputText id="verificationcode" value="#{authBean.verificationcode}" required="true"
+                    requiredMessage="Verification code is required." />
 
-            <h:outputLabel for="fname" value="First Name"/>
-            <h:inputText id="fname"
-                         value="#{authBean.fname}"
-                         required="true"
-                         requiredMessage="First name is required."/>
+                <h:outputLabel for="fname" value="First Name" />
+                <h:inputText id="fname" value="#{authBean.fname}" required="true"
+                    requiredMessage="First name is required." />
 
-            <h:outputLabel for="lname" value="Last Name"/>
-            <h:inputText id="lname"
-                         value="#{authBean.lname}"
-                         required="true"
-                         requiredMessage="Last name is required."/>
+                <h:outputLabel for="lname" value="Last Name" />
+                <h:inputText id="lname" value="#{authBean.lname}" required="true"
+                    requiredMessage="Last name is required." />
 
-            <h:outputLabel for="username" value="Username"/>
-            <h:inputText id="username"
-                         value="#{authBean.username}"
-                         required="true"
-                         requiredMessage="Username is required."
-                         autocomplete="off"/>
+                <h:outputLabel for="username" value="Username" />
+                <h:inputText id="username" value="#{authBean.username}" required="true"
+                    requiredMessage="Username is required." autocomplete="off" />
 
-            <h:outputLabel for="password" value="Password"/>
-            <h:inputSecret id="password"
-                           value="#{authBean.password}"
-                           required="true"
-                           requiredMessage="Password is required."
-                           autocomplete="off"/>
+                <h:outputLabel for="password" value="Password" />
+                <h:inputSecret id="password" value="#{authBean.password}" required="true"
+                    requiredMessage="Password is required." autocomplete="off" />
 
-            <h:outputLabel for="passwordv" value="Password Verify"/>
-            <h:inputSecret id="passwordv"
-                           value="#{authBean.passwordv}"
-                           required="true"
-                           requiredMessage="Password verification is required."
-                           autocomplete="off"/>
+                <h:outputLabel for="passwordv" value="Password Verify" />
+                <h:inputSecret id="passwordv" value="#{authBean.passwordv}" required="true"
+                    requiredMessage="Password verification is required." autocomplete="off" />
 
-        </h:panelGrid>
+            </h:panelGrid>
 
-        <br/>
+            <br />
 
-        <h:commandButton value="Create"
-                         action="#{authBean.createUser}"/>
+            <h:commandButton value="Create" action="#{authBean.createUser}" />
 
-    </h:form>
+        </h:form>
 
-    <br/>
+        <br />
 
-    <h:link outcome="index.xhtml" value="Welcome Page"/>
+        <h:link outcome="index.xhtml" value="Welcome Page" />
 
-    <div class="nav-links">
+        <div class="nav-links">
 
-    <h:link outcome="/default.xhtml" value="Main Page"/>
+            <h:link outcome="/default.xhtml" value="Back to Dashboard" />
 
-    |
+            |
 
-    <h:link outcome="logout.xhtml"
-            value="Logout"
-            rendered="#{authBean.logged}"/>
+            <h:form rendered="#{authBean.logged}" style="display:inline;">
+                <h:commandLink value="Logout" action="#{authBean.logout}" styleClass="logout-btn" />
+            </h:form>
 
-</div>
-</div>
+        </div>
+    </div>
 </h:body>
+
 </html>

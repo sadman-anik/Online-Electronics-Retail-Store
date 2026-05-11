@@ -1,29 +1,52 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core">
 <h:head>
-    <h:outputStylesheet library="css" name="style.css"/><title>Found Smartwatches</title></h:head>
+    <h:outputStylesheet library="css" name="style.css" />
+    <title>Found Smartwatches</title>
+</h:head>
 <h:body>
-<div class="page-container">
-<h1 class="page-header">The Found Smartwatches</h1>
-<div class="message"><h:messages globalOnly="false"/></div>
+    <div class="page-container">
+        <h1 class="page-header">The Found Smartwatches</h1>
+        <div class="message">
+            <h:messages globalOnly="false" />
+        </div>
 
-<h:dataTable value="#{productController.smartwatchList}" var="s" border="1">
-<h:column><f:facet name="header">ID</f:facet>#{s.id}</h:column>
-<h:column><f:facet name="header">Brand</f:facet>#{s.brand}</h:column>
-<h:column><f:facet name="header">Model</f:facet>#{s.model}</h:column>
-<h:column><f:facet name="header">Display Size</f:facet>#{s.displaySize}</h:column>
-<h:column><f:facet name="header">OS</f:facet>#{s.operatingSystem}</h:column>
-<h:column><f:facet name="header">Price</f:facet>#{s.price}</h:column>
-<h:column><f:facet name="header">Stock</f:facet>#{s.stockNumber}</h:column>
-<h:column><f:facet name="header">Health</f:facet>#{s.healthMonitoring}</h:column>
-<h:column><f:facet name="header">Fitness</f:facet>#{s.fitnessTracking}</h:column>
-</h:dataTable>
+        <h:dataTable value="#{productController.smartwatchList}" var="s" border="1">
+            <h:column>
+                <f:facet name="header">ID</f:facet>#{s.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Brand</f:facet>#{s.brand}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Model</f:facet>#{s.model}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Display Size</f:facet>#{s.displaySize}
+            </h:column>
+            <h:column>
+                <f:facet name="header">OS</f:facet>#{s.operatingSystem}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Price</f:facet>#{s.price}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Stock</f:facet>#{s.stockNumber}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Health</f:facet>#{s.healthMonitoring}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Fitness</f:facet>#{s.fitnessTracking}
+            </h:column>
+        </h:dataTable>
 
-<div class="nav-links">
-<h:link outcome="/default.xhtml" value="Main Page"/> |
-<h:commandLink value="Logout" action="#{authBean.logout}" rendered="#{authBean.logged}"/>
-</div>
-</div>
+        <div class="nav-links">
+            <h:link outcome="/default.xhtml" value="Back to Dashboard" /> |
+            <h:form rendered="#{authBean.logged}" style="display:inline;">
+                <h:commandLink value="Logout" action="#{authBean.logout}" styleClass="logout-btn" />
+            </h:form>
+        </div>
+    </div>
 </h:body>
+
 </html>

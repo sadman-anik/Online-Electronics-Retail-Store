@@ -1,28 +1,47 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core">
 <h:head>
-    <h:outputStylesheet library="css" name="style.css"/><title>Found Order</title></h:head>
+    <h:outputStylesheet library="css" name="style.css" />
+    <title>Found Order</title>
+</h:head>
 <h:body>
-<div class="page-container">
-<h1 class="page-header">The Found Order</h1>
-<div class="message"><h:messages globalOnly="false"/></div>
+    <div class="page-container">
+        <h1 class="page-header">The Found Order</h1>
+        <div class="message">
+            <h:messages globalOnly="false" />
+        </div>
 
-<h:dataTable value="#{[orderController.foundOrder]}" var="o" border="1">
-<h:column><f:facet name="header">Order #</f:facet>#{o.id}</h:column>
-<h:column><f:facet name="header">Customer</f:facet>#{o.customer.name}</h:column>
-<h:column><f:facet name="header">Device</f:facet>#{o.product.brandModel}</h:column>
-<h:column><f:facet name="header">Created At</f:facet>#{o.createdAt}</h:column>
-<h:column><f:facet name="header">Unit Price</f:facet>#{o.unitPrice}</h:column>
-<h:column><f:facet name="header">Qty</f:facet>#{o.quantity}</h:column>
-<h:column><f:facet name="header">Total Price</f:facet>#{o.totalPrice}</h:column>
-</h:dataTable>
-<h:link outcome="listOrders.xhtml" value="List of Orders"/>
+        <h:dataTable value="#{[orderController.foundOrder]}" var="o" border="1">
+            <h:column>
+                <f:facet name="header">Order #</f:facet>#{o.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Customer</f:facet>#{o.customer.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Device</f:facet>#{o.product.brandModel}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Created At</f:facet>#{o.createdAt}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Unit Price</f:facet>#{o.unitPrice}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Qty</f:facet>#{o.quantity}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Total Price</f:facet>#{o.totalPrice}
+            </h:column>
+        </h:dataTable>
+        <h:link outcome="listOrders.xhtml" value="List of Orders" />
 
-<div class="nav-links">
-<h:link outcome="/default.xhtml" value="Main Page"/> |
-<h:commandLink value="Logout" action="#{authBean.logout}" rendered="#{authBean.logged}"/>
-</div>
-</div>
+        <div class="nav-links">
+            <h:link outcome="/default.xhtml" value="Back to Dashboard" /> |
+            <h:form rendered="#{authBean.logged}" style="display:inline;">
+                <h:commandLink value="Logout" action="#{authBean.logout}" styleClass="logout-btn" />
+            </h:form>
+        </div>
+    </div>
 </h:body>
+
 </html>

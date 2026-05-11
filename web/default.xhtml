@@ -1,47 +1,81 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core">
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core">
 <h:head>
-    <title>Main</title>
-    <h:outputStylesheet library="css" name="style.css"/>
+    <title>Dashboard</title>
+    <h:outputStylesheet library="css" name="style.css" />
 </h:head>
-
 <h:body>
-<div class="page-container">
-
-    <h1 class="page-header">Ebusiness: Product, Customer and Order Management</h1>
-
-    <div class="message">
-        <h:messages globalOnly="false"/>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">ERS</div>
+                <div>
+                    <h2>Retail Store</h2>
+                    <p>Management System</p>
+                </div>
+            </div>
+            <nav class="side-nav">
+                <h4>Products</h4>
+                <h:link outcome="/product/newTablet.xhtml" value="Create Tablet" />
+                <h:link outcome="/product/listTablets.xhtml" value="Tablet Stock" />
+                <h:link outcome="/product/searchTablet.xhtml" value="Search Tablet" />
+                <h:link outcome="/product/newSmartwatch.xhtml" value="Create Smartwatch" />
+                <h:link outcome="/product/listSmartwatches.xhtml" value="Smartwatch Stock" />
+                <h:link outcome="/product/searchSmartwatch.xhtml" value="Search Smartwatch" />
+                <h4>Customers</h4>
+                <h:link outcome="/customer/newCustomer.xhtml" value="Create Customer" />
+                <h:link outcome="/customer/listCustomers.xhtml" value="List Customers" />
+                <h:link outcome="/customer/searchCustomer.xhtml" value="Search Customer" />
+                <h4>Orders</h4>
+                <h:link outcome="/order/newOrder.xhtml" value="Create Order" />
+                <h:link outcome="/order/listOrders.xhtml" value="List Orders" />
+                <h:link outcome="/order/searchOrder.xhtml" value="Search Order" />
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <h1>Dashboard</h1>
+                    <p>Manage products, customers, and orders</p>
+                </div>
+                <div class="user-area">
+                    <span class="username">#{authBean.username}</span>
+                    <h:form rendered="#{authBean.logged}" style="display:inline;">
+                        <h:commandLink value="Logout" action="#{authBean.logout}" styleClass="logout-btn" />
+                    </h:form>
+                </div>
+            </header>
+            <div class="message">
+                <h:messages globalOnly="false" />
+            </div>
+            <section class="cards-grid">
+                <div class="card">
+                    <h3>Products</h3>
+                    <p>Create tablets and smartwatches, view stock, and search product records.</p>
+                    <h:link outcome="/product/newTablet.xhtml" value="Add Tablet" styleClass="card-btn" />
+                </div>
+                <div class="card">
+                    <h3>Customers</h3>
+                    <p>Create and manage customer records for retail orders.</p>
+                    <h:link outcome="/customer/newCustomer.xhtml" value="Add Customer" styleClass="card-btn" />
+                </div>
+                <div class="card">
+                    <h3>Orders</h3>
+                    <p>Create orders by selecting customers and available products.</p>
+                    <h:link outcome="/order/newOrder.xhtml" value="Create Order" styleClass="card-btn" />
+                </div>
+            </section>
+            <section class="quick-actions">
+                <h2>Quick Actions</h2>
+                <div class="action-grid">
+                    <h:link outcome="/product/listTablets.xhtml" value="View Tablet Stock" styleClass="action-link" />
+                    <h:link outcome="/product/listSmartwatches.xhtml" value="View Smartwatch Stock"
+                        styleClass="action-link" />
+                    <h:link outcome="/customer/listCustomers.xhtml" value="View Customers" styleClass="action-link" />
+                    <h:link outcome="/order/listOrders.xhtml" value="View Orders" styleClass="action-link" />
+                </div>
+            </section>
+        </main>
     </div>
-
-    <h2>PRODUCTS</h2>
-    <h:link outcome="/product/newTablet.xhtml" value="Create a New Tablet"/> |
-    <h:link outcome="/product/listTablets.xhtml" value="The Stock of Tablets"/> |
-    <h:link outcome="/product/searchTablet.xhtml" value="Search for a Tablet"/>
-
-    <br/><br/>
-
-    <h:link outcome="/product/newSmartwatch.xhtml" value="Create a New Smartwatch"/> |
-    <h:link outcome="/product/listSmartwatches.xhtml" value="The Stock of Smartwatches"/> |
-    <h:link outcome="/product/searchSmartwatch.xhtml" value="Search for a Smartwatch"/>
-
-    <h2>CUSTOMERS</h2>
-    <h:link outcome="/customer/newCustomer.xhtml" value="Create a New Customer"/> |
-    <h:link outcome="/customer/listCustomers.xhtml" value="List of Customers"/> |
-    <h:link outcome="/customer/searchCustomer.xhtml" value="Search for a Customer"/>
-
-    <h2>ORDERS</h2>
-    <h:link outcome="/order/newOrder.xhtml" value="Create a New Order"/> |
-    <h:link outcome="/order/listOrders.xhtml" value="List of Orders"/> |
-    <h:link outcome="/order/searchOrder.xhtml" value="Search for an Order"/>
-
-    <div class="nav-links">
-        <h:link outcome="/default.xhtml" value="Main Page"/> |
-        <h:link outcome="/logout.xhtml" value="Logout" rendered="#{authBean.logged}"/>
-    </div>
-
-</div>
 </h:body>
+
 </html>

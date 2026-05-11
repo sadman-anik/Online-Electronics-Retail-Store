@@ -1,14 +1,19 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html">
-    <h:head>
-    <h:outputStylesheet library="css" name="style.css"/>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html">
+<h:head>
+    <title>Online Electronics Retail Store</title>
+    <h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+    <div class="page-container">
+        <h1 class="page-header">Online Electronics Retail Store</h1>
+        <p>Welcome to the e-business management system.</p>
+        <div class="nav-links">
+            <h:link outcome="login.xhtml" value="Login" /><br /><br />
+            <h:link outcome="emailVerification.xhtml" value="Create New Account" /><br /><br />
+            <h:link outcome="emailRecovery.xhtml" value="Forgot Username or Password" />
+        </div>
     </div>
-</div>
 </h:body>
+
 </html>

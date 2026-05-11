@@ -1,26 +1,31 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core">
 <h:head>
-    <h:outputStylesheet library="css" name="style.css"/><title>Recovery</title></h:head>
+    <h:outputStylesheet library="css" name="style.css" />
+    <title>Recovery</title>
+</h:head>
 <h:body>
-<div class="page-container">
-<h1 class="page-header">Recovery from Your Email</h1>
-<div class="message"><h:messages globalOnly="false"/></div>
+    <div class="page-container">
+        <h1 class="page-header">Recovery from Your Email</h1>
+        <div class="message">
+            <h:messages globalOnly="false" />
+        </div>
 
-<h:form>
-    <h:panelGrid columns="2">
-        <h:outputLabel value="Email Address"/>
-        <h:inputText value="#{authBean.email}"/>
-    </h:panelGrid>
-    <h:commandButton value="Create Recovery Code" action="#{authBean.createRecoveryCode}"/>
-</h:form>
-<h:link outcome="index.xhtml" value="Welcome Page"/>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Email Address" />
+                <h:inputText value="#{authBean.email}" />
+            </h:panelGrid>
+            <h:commandButton value="Create Recovery Code" action="#{authBean.createRecoveryCode}" />
+        </h:form>
+        <h:link outcome="index.xhtml" value="Welcome Page" />
 
-<div class="nav-links">
-<h:link outcome="/default.xhtml" value="Main Page"/> |
-<h:commandLink value="Logout" action="#{authBean.logout}" rendered="#{authBean.logged}"/>
-</div>
-</div>
+        <div class="nav-links">
+            <h:link outcome="/default.xhtml" value="Back to Dashboard" /> |
+            <h:form rendered="#{authBean.logged}" style="display:inline;">
+                <h:commandLink value="Logout" action="#{authBean.logout}" styleClass="logout-btn" />
+            </h:form>
+        </div>
+    </div>
 </h:body>
+
 </html>

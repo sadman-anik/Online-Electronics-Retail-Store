@@ -1,25 +1,43 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core">
 <h:head>
-    <h:outputStylesheet library="css" name="style.css"/><title>Found Customers</title></h:head>
+    <h:outputStylesheet library="css" name="style.css" />
+    <title>Found Customers</title>
+</h:head>
 <h:body>
-<div class="page-container">
-<h1 class="page-header">The Found Customers</h1>
-<div class="message"><h:messages globalOnly="false"/></div>
+    <div class="page-container">
+        <h1 class="page-header">The Found Customers</h1>
+        <div class="message">
+            <h:messages globalOnly="false" />
+        </div>
 
-<h:dataTable value="#{customerController.customerList}" var="c" border="1">
-<h:column><f:facet name="header">ID</f:facet>#{c.id}</h:column>
-<h:column><f:facet name="header">Name</f:facet>#{c.name}</h:column>
-<h:column><f:facet name="header">Address</f:facet>#{c.address}</h:column>
-<h:column><f:facet name="header">Orders</f:facet>#{c.orderCount}</h:column>
-<h:column><f:facet name="header">Action</f:facet><h:link outcome="customerDetails.xhtml" value="View Details"><f:param name="customerId" value="#{c.id}"/></h:link></h:column>
-</h:dataTable>
+        <h:dataTable value="#{customerController.customerList}" var="c" border="1">
+            <h:column>
+                <f:facet name="header">ID</f:facet>#{c.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>#{c.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Address</f:facet>#{c.address}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Orders</f:facet>#{c.orderCount}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <h:link outcome="customerDetails.xhtml" value="View Details">
+                    <f:param name="customerId" value="#{c.id}" />
+                </h:link>
+            </h:column>
+        </h:dataTable>
 
-<div class="nav-links">
-<h:link outcome="/default.xhtml" value="Main Page"/> |
-<h:commandLink value="Logout" action="#{authBean.logout}" rendered="#{authBean.logged}"/>
-</div>
-</div>
+        <div class="nav-links">
+            <h:link outcome="/default.xhtml" value="Back to Dashboard" /> |
+            <h:form rendered="#{authBean.logged}" style="display:inline;">
+                <h:commandLink value="Logout" action="#{authBean.logout}" styleClass="logout-btn" />
+            </h:form>
+        </div>
+    </div>
 </h:body>
+
 </html>

@@ -1,23 +1,31 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core">
 <h:head>
-    <h:outputStylesheet library="css" name="style.css"/><title>Search Tablet</title></h:head>
+    <h:outputStylesheet library="css" name="style.css" />
+    <title>Search Tablet</title>
+</h:head>
 <h:body>
-<div class="page-container">
-<h1 class="page-header">Search for a Tablet</h1>
-<div class="message"><h:messages globalOnly="false"/></div>
+    <div class="page-container">
+        <h1 class="page-header">Search for a Tablet</h1>
+        <div class="message">
+            <h:messages globalOnly="false" />
+        </div>
 
-<h:form>
-<h:panelGrid columns="2"><h:outputLabel value="Model"/><h:inputText value="#{productController.searchModel}"/></h:panelGrid>
-<h:commandButton value="Search for a tablet" action="#{productController.doSearchTablet}"/>
-</h:form>
-<h:link outcome="listTablets.xhtml" value="The Stock of Tablets"/>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Model" />
+                <h:inputText value="#{productController.searchModel}" />
+            </h:panelGrid>
+            <h:commandButton value="Search for a tablet" action="#{productController.doSearchTablet}" />
+        </h:form>
+        <h:link outcome="listTablets.xhtml" value="The Stock of Tablets" />
 
-<div class="nav-links">
-<h:link outcome="/default.xhtml" value="Main Page"/> |
-<h:commandLink value="Logout" action="#{authBean.logout}" rendered="#{authBean.logged}"/>
-</div>
-</div>
+        <div class="nav-links">
+            <h:link outcome="/default.xhtml" value="Back to Dashboard" /> |
+            <h:form rendered="#{authBean.logged}" style="display:inline;">
+                <h:commandLink value="Logout" action="#{authBean.logout}" styleClass="logout-btn" />
+            </h:form>
+        </div>
+    </div>
 </h:body>
+
 </html>
