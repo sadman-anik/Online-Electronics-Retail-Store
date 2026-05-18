@@ -30,7 +30,7 @@
                     requiredMessage="Customer is required.">
                     <f:selectItem itemLabel="Select Customer" itemValue="" />
                     <f:selectItems value="#{orderController.customerList}" var="c" itemValue="#{c.id}"
-                        itemLabel="#{c.name}" />
+                        itemLabel="#{c.id} - #{c.name}" />
                 </h:selectOneMenu>
             </h:panelGrid><br />
             <h:panelGroup rendered="#{empty orderController.customerId}">
