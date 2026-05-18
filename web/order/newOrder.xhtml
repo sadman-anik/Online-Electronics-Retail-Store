@@ -17,7 +17,7 @@
                     requiredMessage="Product is required.">
                     <f:selectItem itemLabel="Select Product" itemValue="" />
                     <f:selectItems value="#{orderController.productList}" var="p" itemValue="#{p.id}"
-                        itemLabel="#{p.brandModel}" />
+                        itemLabel="#{p.id} - #{p.brand} #{p.model}" />
                 </h:selectOneMenu>
                 <h:outputLabel for="quantity" value="Quantity" />
                 <h:inputText id="quantity" value="#{orderController.quantity}" required="true"
