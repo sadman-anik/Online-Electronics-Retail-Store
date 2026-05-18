@@ -48,6 +48,10 @@ body {
     text-decoration: underline;
 }
 
+.dashboard-link {
+    color: #16324f !important;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
