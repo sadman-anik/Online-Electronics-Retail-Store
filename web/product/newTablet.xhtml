@@ -12,10 +12,12 @@
 
         <h:form>
             <h:panelGrid columns="2">
-                <h:outputLabel value="Brand" />
-                <h:inputText value="#{productController.tablet.brand}" />
-                <h:outputLabel value="Model" />
-                <h:inputText value="#{productController.tablet.model}" />
+                <h:outputLabel for="brand" value="Brand" />
+                <h:inputText id="brand" value="#{productController.tablet.brand}" required="true"
+                    requiredMessage="Brand is required." />
+                <h:outputLabel for="model" value="Model" />
+                <h:inputText id="model" value="#{productController.tablet.model}" required="true"
+                    requiredMessage="Model is required." />
                 <h:outputLabel value="Display Size" />
                 <h:inputText value="#{productController.tablet.displaySize}" />
                 <h:outputLabel value="Weight" />
@@ -26,10 +28,12 @@
                 <h:inputText value="#{productController.tablet.connectivity}" />
                 <h:outputLabel value="Wi-Fi Capable" />
                 <h:selectBooleanCheckbox value="#{productController.tablet.wifiCapable}" />
-                <h:outputLabel value="Price" />
-                <h:inputText value="#{productController.tablet.price}" />
-                <h:outputLabel value="Stock Number" />
-                <h:inputText value="#{productController.tablet.stockNumber}" />
+                <h:outputLabel for="price" value="Price" />
+                <h:inputText id="price" value="#{productController.tablet.price}" required="true"
+                    requiredMessage="Price is required." />
+                <h:outputLabel for="stockNumber" value="Stock Number" />
+                <h:inputText id="stockNumber" value="#{productController.tablet.stockNumber}" required="true"
+                    requiredMessage="Stock number is required." />
                 <h:outputLabel value="Storage Capacity" />
                 <h:inputText value="#{productController.tablet.storageCapacity}" />
                 <h:outputLabel value="Stylus Support" />
