@@ -18,11 +18,17 @@ public class AuthenticationEJB {
     private EntityManager em;
 
     public Wuser findByUsername(String username) {
+        if (username == null || username.trim().isEmpty()) {
+            return null;
+        }
         try {
             return em.createNamedQuery("Wuser.findByUsername", Wuser.class)
-                    .setParameter("username", username)
+                    .setParameter("username", username.trim())
                     .getSingleResult();
         } catch (NoResultException ex) {
+            return null;
+        } catch (RuntimeException ex) {
+            LOGGER.log(Level.WARNING, "Unable to find user by username", ex);
             return null;
         }
     }
