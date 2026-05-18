@@ -62,7 +62,10 @@ public class OrderEJB {
         CustomerOrder order = em.find(CustomerOrder.class, id);
         if (order == null) throw new Exception("Order not found.");
         Product product = order.getProduct();
-        product.setStockNumber(product.getStockNumber() + order.getQuantity());
+        if (product != null && order.getQuantity() != null) {
+            int currentStock = product.getStockNumber() == null ? 0 : product.getStockNumber();
+            product.setStockNumber(currentStock + order.getQuantity());
+        }
         em.remove(order);
     }
 }
