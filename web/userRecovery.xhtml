@@ -21,10 +21,12 @@
                 <h:outputText value="#{authBean.recoveryUser.lastname}" />
                 <h:outputLabel value="Username" />
                 <h:outputText value="#{authBean.recoveryUser.username}" />
-                <h:outputLabel value="New Password" />
-                <h:inputSecret value="#{authBean.password}" />
-                <h:outputLabel value="New Password Verify" />
-                <h:inputSecret value="#{authBean.passwordv}" />
+                <h:outputLabel for="password" value="New Password" />
+                <h:inputSecret id="password" value="#{authBean.password}" required="true"
+                    requiredMessage="New password is required." />
+                <h:outputLabel for="passwordv" value="Confirm New Password" />
+                <h:inputSecret id="passwordv" value="#{authBean.passwordv}" required="true"
+                    requiredMessage="Confirm new password is required." />
             </h:panelGrid>
             <h:commandButton value="Recover" action="#{authBean.resetUser}" />
         </h:form>
