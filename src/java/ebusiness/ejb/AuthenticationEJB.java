@@ -17,6 +17,7 @@ public class AuthenticationEJB {
     @PersistenceContext(unitName = "RetailStorePU")
     private EntityManager em;
 
+    // Authentication lookups return null when credentials do not match a stored user.
     public Wuser findByUsername(String username) {
         if (username == null || username.trim().isEmpty()) {
             return null;

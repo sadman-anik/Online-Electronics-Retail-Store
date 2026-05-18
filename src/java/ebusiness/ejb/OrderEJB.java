@@ -15,6 +15,7 @@ public class OrderEJB {
     @PersistenceContext(unitName = "RetailStorePU")
     private EntityManager em;
 
+    // Order creation validates inventory before reducing product stock.
     public CustomerOrder createOrder(Long customerId, Long productId, Integer quantity) throws Exception {
         if (quantity == null || quantity <= 0) {
             throw new Exception("Quantity must be greater than zero.");

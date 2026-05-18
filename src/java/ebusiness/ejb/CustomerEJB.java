@@ -13,6 +13,7 @@ public class CustomerEJB {
     @PersistenceContext(unitName = "RetailStorePU")
     private EntityManager em;
 
+    // Customer operations centralize persistence access for JSF controllers.
     public Customer createCustomer(Customer customer) {
         em.persist(customer);
         return customer;

@@ -15,6 +15,7 @@ public class ProductEJB {
     @PersistenceContext(unitName = "RetailStorePU")
     private EntityManager em;
 
+    // Product inventory operations cover the shared product table and subtype tables.
     public Tablet createTablet(Tablet tablet) {
         em.persist(tablet);
         return tablet;
