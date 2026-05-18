@@ -12,10 +12,12 @@
 
         <h:form>
             <h:panelGrid columns="2">
-                <h:outputLabel value="Brand" />
-                <h:inputText value="#{productController.smartwatch.brand}" />
-                <h:outputLabel value="Model" />
-                <h:inputText value="#{productController.smartwatch.model}" />
+                <h:outputLabel for="brand" value="Brand" />
+                <h:inputText id="brand" value="#{productController.smartwatch.brand}" required="true"
+                    requiredMessage="Brand is required." />
+                <h:outputLabel for="model" value="Model" />
+                <h:inputText id="model" value="#{productController.smartwatch.model}" required="true"
+                    requiredMessage="Model is required." />
                 <h:outputLabel value="Display Size" />
                 <h:inputText value="#{productController.smartwatch.displaySize}" />
                 <h:outputLabel value="Weight" />
@@ -26,10 +28,12 @@
                 <h:inputText value="#{productController.smartwatch.connectivity}" />
                 <h:outputLabel value="Wi-Fi Capable" />
                 <h:selectBooleanCheckbox value="#{productController.smartwatch.wifiCapable}" />
-                <h:outputLabel value="Price" />
-                <h:inputText value="#{productController.smartwatch.price}" />
-                <h:outputLabel value="Stock Number" />
-                <h:inputText value="#{productController.smartwatch.stockNumber}" />
+                <h:outputLabel for="price" value="Price" />
+                <h:inputText id="price" value="#{productController.smartwatch.price}" required="true"
+                    requiredMessage="Price is required." />
+                <h:outputLabel for="stockNumber" value="Stock Number" />
+                <h:inputText id="stockNumber" value="#{productController.smartwatch.stockNumber}" required="true"
+                    requiredMessage="Stock number is required." />
                 <h:outputLabel value="Health Monitoring" />
                 <h:inputText value="#{productController.smartwatch.healthMonitoring}" />
                 <h:outputLabel value="Fitness Tracking" />
