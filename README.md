@@ -135,6 +135,8 @@ useSSL = false
 allowPublicKeyRetrieval = true
 ```
 
+Keep `allowPublicKeyRetrieval = true` when using MySQL 8 with password authentication, otherwise GlassFish may fail the JDBC pool ping with a public key retrieval error.
+
 Expected:
 
 ```text
