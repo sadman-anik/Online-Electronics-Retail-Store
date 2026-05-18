@@ -219,6 +219,10 @@ button:hover {
     font-weight: bold;
 }
 
+.inline-form {
+    display: inline;
+}
+
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

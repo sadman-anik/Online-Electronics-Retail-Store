@@ -17,6 +17,12 @@ public class OrderEJB {
 
     // Order creation validates inventory before reducing product stock.
     public CustomerOrder createOrder(Long customerId, Long productId, Integer quantity) throws Exception {
+        if (customerId == null) {
+            throw new Exception("Customer is required.");
+        }
+        if (productId == null) {
+            throw new Exception("Product is required.");
+        }
         if (quantity == null || quantity <= 0) {
             throw new Exception("Quantity must be greater than zero.");
         }
@@ -27,8 +33,12 @@ public class OrderEJB {
         Customer customer = em.find(Customer.class, customerId);
         Product product = em.find(Product.class, productId);
 
-        if (customer == null) throw new Exception("Customer not found.");
-        if (product == null) throw new Exception("Product not found.");
+        if (customer == null) {
+            throw new Exception("Customer not found.");
+        }
+        if (product == null) {
+            throw new Exception("Product not found.");
+        }
         if (product.getStockNumber() == null || product.getStockNumber() <= 0) {
             throw new Exception(product.getBrandModel() + " is currently out of stock.");
         }
@@ -61,7 +71,9 @@ public class OrderEJB {
 
     public void deleteOrder(Long id) throws Exception {
         CustomerOrder order = em.find(CustomerOrder.class, id);
-        if (order == null) throw new Exception("Order not found.");
+        if (order == null) {
+            throw new Exception("Order not found.");
+        }
         Product product = order.getProduct();
         if (product != null && order.getQuantity() != null) {
             int currentStock = product.getStockNumber() == null ? 0 : product.getStockNumber();
