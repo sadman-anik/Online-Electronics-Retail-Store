@@ -54,6 +54,12 @@ mysql -u root -p
 CREATE DATABASE retailestoredb;
 ```
 
+If the database already exists, use:
+
+```sql
+CREATE DATABASE IF NOT EXISTS retailestoredb;
+```
+
 ---
 
 # GlassFish
