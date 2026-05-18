@@ -26,7 +26,7 @@
                     requiredMessage="Email address is required." validatorMessage="Please enter a valid email address."
                     autocomplete="off">
 
-                    <f:validateRegex pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$" />
+                    <f:validateRegex pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
 
                 </h:inputText>
 
