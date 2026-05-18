@@ -85,6 +85,12 @@ public class AuthenticationController implements Serializable {
             context.addMessage(null, new FacesMessage("All fields are required."));
             return null;
         }
+        if (!ValidationUtil.isStrongPassword(password)) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Password requirements not met",
+                    "Use at least 8 characters with uppercase, lowercase, number, and special character."));
+            return null;
+        }
         if (!password.equals(passwordv)) {
             context.addMessage(null, new FacesMessage("The specified passwords do not match, please try again!"));
             return null;
@@ -106,6 +112,9 @@ public class AuthenticationController implements Serializable {
         user.setPassword(PasswordUtil.hashPassword(password));
         authenticationEJB.createUser(user);
         clearFields();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                "Account created successfully", "You can now log in with your new account."));
         return "index.xhtml?faces-redirect=true";
     }
 

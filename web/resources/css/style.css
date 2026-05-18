@@ -31,6 +31,42 @@ body {
     margin-bottom: 16px;
 }
 
+.success-message {
+    color: #166534;
+}
+
+.password-feedback {
+    margin-top: 14px;
+    padding: 14px 16px;
+    border: 1px solid #d7e0ea;
+    border-radius: 8px;
+    background: #f8fafc;
+}
+
+.feedback-item,
+.requirement-list {
+    margin: 0;
+}
+
+.requirement-list {
+    padding-left: 20px;
+    margin-top: 8px;
+}
+
+.feedback-pending {
+    color: #64748b;
+}
+
+.feedback-valid {
+    color: #166534;
+    font-weight: bold;
+}
+
+.feedback-invalid {
+    color: #b91c1c;
+    font-weight: bold;
+}
+
 .nav-links {
     margin-top: 26px;
     padding-top: 18px;

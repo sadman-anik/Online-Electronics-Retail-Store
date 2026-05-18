@@ -7,6 +7,14 @@
 <h:body>
     <div class="page-container">
         <h1 class="page-header">Online Electronics Retail Store</h1>
+        <div class="message success-message">
+            <h:messages globalOnly="false" />
+        </div>
+        <h:panelGroup rendered="#{not empty facesContext.messageList}">
+            <script>
+                alert("Account created successfully. You can now log in.");
+            </script>
+        </h:panelGroup>
         <p>Welcome to the e-business management system.</p>
         <div class="nav-links">
             <h:link outcome="login.xhtml" value="Login" /><br /><br />
