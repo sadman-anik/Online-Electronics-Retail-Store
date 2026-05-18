@@ -46,6 +46,9 @@ public class OrderEJB {
     }
 
     public CustomerOrder findOrderById(Long id) {
+        if (id == null) {
+            return null;
+        }
         return em.find(CustomerOrder.class, id);
     }
 
