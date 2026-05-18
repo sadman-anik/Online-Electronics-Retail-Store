@@ -57,6 +57,14 @@ table {
     border-collapse: collapse;
 }
 
+.search-panel {
+    display: grid;
+    grid-template-columns: 160px minmax(180px, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
 td,
 th {
     padding: 10px;
