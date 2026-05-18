@@ -21,14 +21,17 @@
 
             <h:panelGrid columns="2" cellpadding="8">
 
-                <h:outputLabel value="Customer Name" />
-                <h:inputText value="#{customerController.customer.name}" required="true" />
+                <h:outputLabel for="customerName" value="Customer Name" />
+                <h:inputText id="customerName" value="#{customerController.customer.name}" required="true"
+                    requiredMessage="Customer name is required." />
 
-                <h:outputLabel value="Address" />
-                <h:inputTextarea value="#{customerController.customer.address}" rows="4" required="true" />
+                <h:outputLabel for="address" value="Address" />
+                <h:inputTextarea id="address" value="#{customerController.customer.address}" rows="4" required="true"
+                    requiredMessage="Address is required." />
 
-                <h:outputLabel value="Email Address" />
-                <h:inputText value="#{customerController.customer.emailAddress}" required="true" />
+                <h:outputLabel for="emailAddress" value="Email Address" />
+                <h:inputText id="emailAddress" value="#{customerController.customer.emailAddress}" required="true"
+                    requiredMessage="Email address is required." />
 
             </h:panelGrid>
 
