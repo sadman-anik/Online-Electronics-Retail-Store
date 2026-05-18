@@ -191,7 +191,13 @@ OR
 
 ## 1. Start Environment
 
-Start:
+Use the helper script to start the required environment services:
+
+```bash
+./start-retailstore-env.sh
+```
+
+The script starts:
 - MySQL
 - GlassFish
 - FakeSMTP
@@ -207,6 +213,8 @@ File → Open Project
 ---
 
 ## 3. Build Project
+
+Use NetBeans to build the project:
 
 ```text
 Right click project → Build
@@ -227,6 +235,8 @@ BUILD SUCCESSFUL
 ---
 
 ## 4. Run Project
+
+Use NetBeans to run the project:
 
 ```text
 Right click project → Run
