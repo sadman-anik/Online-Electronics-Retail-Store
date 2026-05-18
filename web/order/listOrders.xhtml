@@ -10,6 +10,12 @@
             <h:messages globalOnly="false" />
         </div>
 
+        <h:form styleClass="search-panel">
+            <h:outputLabel for="orderId" value="Search by order #" />
+            <h:inputText id="orderId" value="#{orderController.searchOrderId}" />
+            <h:commandButton value="Search" action="#{orderController.doSearchOrder}" />
+        </h:form>
+
         <h:form>
             <h:dataTable value="#{orderController.orderList}" var="o" border="1">
                 <h:column>
