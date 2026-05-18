@@ -102,9 +102,10 @@ button:hover {
 
 .sidebar {
     width: 280px;
-    background: #16324f;
+    background: #102033;
     color: white;
-    padding: 24px 18px;
+    padding: 24px 16px;
+    box-shadow: 8px 0 24px rgba(15, 23, 42, .12);
 }
 
 .brand {
@@ -149,14 +150,16 @@ button:hover {
     display: block;
     color: #e5eef7;
     text-decoration: none;
-    padding: 10px 12px;
+    padding: 11px 12px;
     border-radius: 8px;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
     font-size: 14px;
+    border-left: 3px solid transparent;
 }
 
 .side-nav a:hover {
-    background: #24496f;
+    background: #1d3a59;
+    border-left-color: #4d9de0;
 }
 
 .main-content {
