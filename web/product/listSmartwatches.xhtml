@@ -10,6 +10,12 @@
             <h:messages globalOnly="false" />
         </div>
 
+        <h:form styleClass="search-panel">
+            <h:outputLabel for="smartwatchModel" value="Search by model" />
+            <h:inputText id="smartwatchModel" value="#{productController.searchModel}" />
+            <h:commandButton value="Search" action="#{productController.doSearchSmartwatch}" />
+        </h:form>
+
         <h:dataTable value="#{productController.smartwatchList}" var="s" border="1">
             <h:column>
                 <f:facet name="header">ID</f:facet>#{s.id}
