@@ -10,7 +10,6 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
-import java.util.ArrayList;
 import java.util.List;
 
 @Named("productController")
@@ -23,9 +22,9 @@ public class ProductController {
     private Tablet tablet = new Tablet();
     private Smartwatch smartwatch = new Smartwatch();
     private String searchModel;
-    private List<Tablet> tabletList = new ArrayList<>();
-    private List<Smartwatch> smartwatchList = new ArrayList<>();
-    private List<Product> productList = new ArrayList<>();
+    private List<Tablet> tabletList;
+    private List<Smartwatch> smartwatchList;
+    private List<Product> productList;
 
     public String doCreateTablet() {
         if (!validateProduct(tablet)) return null;
