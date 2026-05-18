@@ -19,13 +19,19 @@ public class OrderEJB {
         if (quantity == null || quantity <= 0) {
             throw new Exception("Quantity must be greater than zero.");
         }
+        if (quantity > 1000) {
+            throw new Exception("Quantity must be 1000 or less.");
+        }
 
         Customer customer = em.find(Customer.class, customerId);
         Product product = em.find(Product.class, productId);
 
         if (customer == null) throw new Exception("Customer not found.");
         if (product == null) throw new Exception("Product not found.");
-        if (product.getStockNumber() == null || product.getStockNumber() < quantity) {
+        if (product.getStockNumber() == null || product.getStockNumber() <= 0) {
+            throw new Exception(product.getBrandModel() + " is currently out of stock.");
+        }
+        if (product.getStockNumber() < quantity) {
             throw new Exception("Not enough stock for " + product.getBrandModel() + ".");
         }
 
