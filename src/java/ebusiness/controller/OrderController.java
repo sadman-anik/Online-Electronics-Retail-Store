@@ -32,12 +32,18 @@ public class OrderController {
 
     public String doCreateOrder() {
         FacesContext ctx = FacesContext.getCurrentInstance();
+        if (customerId == null || productId == null) {
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Order not created", "Select both a customer and a product before creating the order."));
+            return null;
+        }
         try {
             CustomerOrder order = orderEJB.createOrder(customerId, productId, quantity);
             ctx.addMessage(null, new FacesMessage("Successfully created order #" + order.getId()));
             return "listOrders.xhtml";
         } catch (Exception ex) {
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Order not created", ex.getMessage()));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Order not created", "Please check the selected product, customer, and quantity. " + ex.getMessage()));
             return null;
         }
     }
