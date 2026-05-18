@@ -16,8 +16,8 @@
                 <h:selectOneMenu id="product" value="#{orderController.productId}" required="true"
                     requiredMessage="Product is required.">
                     <f:selectItem itemLabel="Select Product" itemValue="" />
-                    <f:selectItems value="#{orderController.products}" var="p" itemValue="#{p.productId}"
-                        itemLabel="#{p.productId} - #{p.brand} #{p.model}" />
+                    <f:selectItems value="#{orderController.productList}" var="p" itemValue="#{p.id}"
+                        itemLabel="#{p.brandModel}" />
                 </h:selectOneMenu>
                 <h:outputLabel for="quantity" value="Quantity" />
                 <h:inputText id="quantity" value="#{orderController.quantity}" required="true"
@@ -29,15 +29,15 @@
                 <h:selectOneMenu id="customer" value="#{orderController.customerId}" required="true"
                     requiredMessage="Customer is required.">
                     <f:selectItem itemLabel="Select Customer" itemValue="" />
-                    <f:selectItems value="#{orderController.customers}" var="c" itemValue="#{c.customerId}"
-                        itemLabel="#{c.customerId} - #{c.firstName} #{c.lastName}" />
+                    <f:selectItems value="#{orderController.customerList}" var="c" itemValue="#{c.id}"
+                        itemLabel="#{c.name}" />
                 </h:selectOneMenu>
             </h:panelGrid><br />
             <h:panelGroup rendered="#{empty orderController.customerId}">
                 <p>If the customer does not exist, create a new customer below.</p>
                 <h:link outcome="/customer/newCustomer.xhtml" value="Create New Customer" />
             </h:panelGroup><br /><br />
-            <h:commandButton value="Create Order" action="#{orderController.createOrder}" />
+            <h:commandButton value="Create Order" action="#{orderController.doCreateOrder}" />
         </h:form>
         <div class="nav-links">
             <h:link outcome="/default.xhtml" value="Back to Dashboard" /> |
