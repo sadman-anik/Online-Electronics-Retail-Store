@@ -126,6 +126,7 @@ databaseName = retailestoredb
 user = root
 password = your_mysql_password
 useSSL = false
+allowPublicKeyRetrieval = true
 ```
 
 Expected:

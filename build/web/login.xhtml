@@ -1,40 +1,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core">
+      xmlns:h="jakarta.faces.html">
 
 <h:head>
-    <h:outputStylesheet library="css" name="style.css"/>
     <title>Login</title>
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
 <h:body>
 
-    <div class="page-container">
-<h1 class="page-header">
-        Login Your Account
-    </h1>
+<div class="page-container">
 
-    <div class="message"><h:messages globalOnly="false"/></div>
+    <h1 class="page-header">Login Your Account</h1>
+
+    <div class="message">
+        <h:messages globalOnly="false"/>
+    </div>
 
     <h:form>
 
-        <h:panelGrid columns="2" cellpadding="5">
+        <h:panelGrid columns="2" cellpadding="8">
 
-            <h:outputLabel for="username" value="Username"/>
-
-            <h:inputText id="username"
-                         value="#{authBean.username}"
+            <h:outputLabel value="Username"/>
+            <h:inputText value="#{authBean.username}"
                          required="true"
-                         requiredMessage="Username is required."
                          autocomplete="off"/>
 
-            <h:outputLabel for="password" value="Password"/>
-
-            <h:inputSecret id="password"
-                           value="#{authBean.password}"
-                           required="true"
-                           requiredMessage="Password is required."
-                           autocomplete="off"/>
+            <h:outputLabel value="Password"/>
+            <h:inputSecret value="#{authBean.password}"
+                           required="true"/>
 
         </h:panelGrid>
 
@@ -45,29 +38,15 @@
 
     </h:form>
 
-    <br/>
-
-    <h:link outcome="emailRecovery.xhtml"
-            value="Forgot your user name and/or password"/>
-
-    <br/><br/>
-
-    <h:link outcome="emailVerification.xhtml"
-            value="Create a New Account"/>
-
     <div class="nav-links">
-
-    <h:link outcome="/default.xhtml"
-            value="Main Page"/>
-
-    |
-
-    <h:link outcome="logout.xhtml"
-            value="Logout"
-            rendered="#{authBean.logged}"/>
+        <h:link outcome="emailRecovery.xhtml"
+                value="Forgot username or password?"/>
+        <br/><br/>
+        <h:link outcome="emailVerification.xhtml"
+                value="Create New Account"/>
+    </div>
 
 </div>
-</div>
+
 </h:body>
-
 </html>
