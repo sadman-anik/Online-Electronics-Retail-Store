@@ -2,7 +2,7 @@
 
 echo "Stopping GlassFish..."
 $HOME/EnterpriseApps/glassfish7/bin/asadmin stop-domain
-
+ 
 echo ""
 echo "Stopping MySQL..."
 sudo /usr/local/mysql/support-files/mysql.server stop
