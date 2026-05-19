@@ -44,7 +44,7 @@ public class OrderController {
             return "listOrders.xhtml";
         } catch (OrderException ex) {
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Order not created", ex.getMessage()));
+                    ex.getMessage(), null));
             return null;
         }
     }

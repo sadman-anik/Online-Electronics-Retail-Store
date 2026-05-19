@@ -120,7 +120,7 @@ public class AuthenticationController implements Serializable {
         context.getExternalContext().getFlash().setKeepMessages(true);
         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                 "Account created successfully", "You can now log in with your new account."));
-        return "index.xhtml?faces-redirect=true";
+        return "login.xhtml?faces-redirect=true";
     }
 
     public String createRecoveryCode() {
