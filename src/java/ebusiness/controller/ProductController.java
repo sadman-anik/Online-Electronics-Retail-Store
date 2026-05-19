@@ -52,12 +52,12 @@ public class ProductController {
     }
 
     public String doSearchTablet() {
-        tabletList = productEJB.searchTablets(searchModel == null ? "" : searchModel);
+        tabletList = productEJB.searchTablets(ValidationUtil.trimToEmpty(searchModel));
         return "foundTablets.xhtml";
     }
 
     public String doSearchSmartwatch() {
-        smartwatchList = productEJB.searchSmartwatches(searchModel == null ? "" : searchModel);
+        smartwatchList = productEJB.searchSmartwatches(ValidationUtil.trimToEmpty(searchModel));
         return "foundSmartwatches.xhtml";
     }
 

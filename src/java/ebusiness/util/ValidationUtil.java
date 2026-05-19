@@ -22,4 +22,8 @@ public class ValidationUtil {
                 && value.matches(".*[0-9].*")
                 && value.matches(".*[^A-Za-z0-9].*");
     }
+
+    public static String trimToEmpty(String value) {
+        return value == null ? "" : value.trim();
+    }
 }

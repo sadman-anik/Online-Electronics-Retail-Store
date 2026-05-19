@@ -12,7 +12,7 @@ import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import jakarta.mail.MessagingException;
 import java.io.Serializable;
-import java.util.Random;
+import java.security.SecureRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,12 +33,14 @@ public class AuthenticationController implements Serializable {
     private String verificationcode1;
     private boolean logged;
     private Wuser recoveryUser;
+    private static final SecureRandom RANDOM = new SecureRandom();
 
     public String validateUser() {
         FacesContext context = FacesContext.getCurrentInstance();
-        Wuser user = authenticationEJB.findByUsername(username);
+        String loginUsername = ValidationUtil.trimToEmpty(username);
+        Wuser user = authenticationEJB.findByUsername(loginUsername);
         if (user == null) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Failed!", "Username '" + username + "' does not exist."));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Failed!", "Username '" + loginUsername + "' does not exist."));
             username = null;
             password = null;
             return null;
@@ -58,6 +60,7 @@ public class AuthenticationController implements Serializable {
 
     public String createVerificationCode() {
         FacesContext context = FacesContext.getCurrentInstance();
+        email = ValidationUtil.trimToEmpty(email);
         if (ValidationUtil.isBlank(email)) {
             context.addMessage(null, new FacesMessage("Email address is required."));
             return null;
@@ -160,9 +163,8 @@ public class AuthenticationController implements Serializable {
     private String generateCode() {
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz!@#$%&*-+=?";
         StringBuilder sb = new StringBuilder();
-        Random rnd = new Random();
         while (sb.length() < 20) {
-            sb.append(chars.charAt(rnd.nextInt(chars.length())));
+            sb.append(chars.charAt(RANDOM.nextInt(chars.length())));
         }
         return sb.toString();
     }

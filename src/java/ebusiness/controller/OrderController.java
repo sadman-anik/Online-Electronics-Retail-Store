@@ -2,6 +2,7 @@ package ebusiness.controller;
 
 import ebusiness.ejb.CustomerEJB;
 import ebusiness.ejb.OrderEJB;
+import ebusiness.ejb.OrderException;
 import ebusiness.ejb.ProductEJB;
 import ebusiness.entity.Customer;
 import ebusiness.entity.CustomerOrder;
@@ -41,7 +42,7 @@ public class OrderController {
             CustomerOrder order = orderEJB.createOrder(customerId, productId, quantity);
             ctx.addMessage(null, new FacesMessage("Successfully created order #" + order.getId()));
             return "listOrders.xhtml";
-        } catch (Exception ex) {
+        } catch (OrderException ex) {
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Order not created", "Please check the selected product, customer, and quantity. " + ex.getMessage()));
             return null;
@@ -62,7 +63,7 @@ public class OrderController {
         try {
             orderEJB.deleteOrder(id);
             ctx.addMessage(null, new FacesMessage("The order has been deleted."));
-        } catch (Exception ex) {
+        } catch (OrderException ex) {
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Delete failed", ex.getMessage()));
         }
         return "listOrders.xhtml";
