@@ -6,6 +6,16 @@ import java.util.Date;
 
 @Entity
 @Table(name = "WUSER")
+@NamedQueries({
+    @NamedQuery(
+        name = "Wuser.findByUsername",
+        query = "SELECT w FROM Wuser w WHERE w.username = :username"
+    ),
+    @NamedQuery(
+        name = "Wuser.findByEmail",
+        query = "SELECT w FROM Wuser w WHERE w.email = :email"
+    )
+})
 public class Wuser implements Serializable {
 
     @Id
