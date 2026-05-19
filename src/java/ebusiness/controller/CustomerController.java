@@ -24,17 +24,21 @@ public class CustomerController {
     private List<Customer> customerList = new ArrayList<>();
 
     public String doCreateCustomer() {
-        if (!validateCustomer(customer))
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        if (!validateCustomer(customer, ctx))
             return null;
-
-        customerEJB.createCustomer(customer);
-        customerList = customerEJB.findCustomers();
-        ctx.addMessage(null, new FacesMessage("Successfully created the customer: " + customer.getName()));
-        return "listCustomers.xhtml";
+        try {
+            customerEJB.createCustomer(customer);
+            customerList = customerEJB.findCustomers();
+            ctx.addMessage(null, new FacesMessage("Successfully created the customer: " + customer.getName()));
+            return "listCustomers.xhtml";
+        } catch (Exception e) {
+            ctx.addMessage(null, new FacesMessage("Failed to create the customer: " + customer.getName()));
+            return null;
+        }
     }
 
-    private Boolean validateCustomer(Customer customer) {
-        FacesContext ctx = FacesContext.getCurrentInstance();
+    private Boolean validateCustomer(Customer customer, FacesContext ctx) {
         if (ValidationUtil.isBlank(customer.getName()))
             ctx.addMessage(null, new FacesMessage("Customer name is required."));
         if (ValidationUtil.isBlank(customer.getAddress()))
