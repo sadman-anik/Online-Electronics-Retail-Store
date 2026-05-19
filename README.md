@@ -7,7 +7,7 @@
 | Java JDK | 17 |
 | Apache NetBeans | 25 |
 | GlassFish | 7.x |
-| MySQL | 8.x |
+| MySQL | 8.x |  
 | MySQL Connector/J | 9.x |
 | Jakarta EE | 10 |
 | JSF | 4.x |
