@@ -5,10 +5,6 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "SMARTWATCH")
-@NamedQueries({
-    @NamedQuery(name = "Smartwatch.findAll", query = "SELECT s FROM Smartwatch s ORDER BY s.id"),
-    @NamedQuery(name = "Smartwatch.searchByModel", query = "SELECT s FROM Smartwatch s WHERE LOWER(s.model) LIKE LOWER(:model)")
-})
 public class Smartwatch extends Product implements Serializable {
 
     private String healthMonitoring;
