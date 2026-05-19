@@ -42,15 +42,16 @@ public class ProductController {
     }
 
     public String doCreateSmartwatch() {
-        if (!validateProduct(smartwatch)) return null;
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        if (!validateProduct(smartwatch, ctx)) return null;
         try {
             productEJB.createSmartwatch(smartwatch);
             smartwatchList = null;     // invalidate cache so getter refreshes
             smartwatchList = productEJB.findSmartwatches();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Successfully created the smartwatch: " + smartwatch.getBrandModel()));
+            ctx.addMessage(null, new FacesMessage("Successfully created the smartwatch: " + smartwatch.getBrandModel()));
             return "listSmartwatches.xhtml";
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Failed to create smartwatch" + e.getMessage()));
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Failed to create smartwatch" + e.getMessage()));
             return null;
         }
     }
