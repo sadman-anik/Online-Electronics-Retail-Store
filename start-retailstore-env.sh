@@ -11,7 +11,7 @@ mysql -u "$MYSQL_USER" -p -e "CREATE DATABASE IF NOT EXISTS retailestoredb;"
 echo ""
 echo "Starting GlassFish..."
 $HOME/EnterpriseApps/glassfish7/bin/asadmin start-domain
- 
+   
 echo ""
 echo "Starting FakeSMTP on port 2525..."
 echo "Keep the FakeSMTP window open and click 'Start Server' if needed."
