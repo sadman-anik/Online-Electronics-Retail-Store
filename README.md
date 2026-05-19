@@ -22,7 +22,7 @@ Create this structure:
  
 ```text
 $HOME/EnterpriseApps/
-├── glassfish7
+├── glassfish7 
 └── FakeSMTP
 ```
 
