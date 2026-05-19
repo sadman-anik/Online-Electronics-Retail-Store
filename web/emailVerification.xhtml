@@ -1,49 +1,65 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
 
 <h:head>
-    <h:outputStylesheet library="css" name="style.css" />
     <title>Verify Email</title>
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
 <h:body>
 
-    <div class="page-container">
-        <h1 class="page-header">
-            Verify Your Email
-        </h1>
+<div class="page-container">
 
-        <div class="message">
-            <h:messages globalOnly="false" />
-        </div>
+    <h1 class="page-header">
+        Verify Your Email
+    </h1>
 
-        <h:form>
-
-            <h:panelGrid columns="2" cellpadding="5">
-
-                <h:outputLabel for="email" value="Email Address" />
-
-                <h:inputText id="email" value="#{authBean.email}" required="true"
-                    requiredMessage="Email address is required." validatorMessage="Please enter a valid email address."
-                    autocomplete="off">
-
-                    <f:validateRegex pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
-
-                </h:inputText>
-
-            </h:panelGrid>
-
-            <br />
-
-            <h:commandButton value="Create Verification Code" action="#{authBean.createVerificationCode}" />
-
-        </h:form>
-
-        <br />
-
-        <div class="nav-links">
-            <h:link outcome="login.xhtml" value="Back to Login" />
-        </div>
+    <div class="message">
+        <h:messages globalOnly="false"/>
     </div>
-</h:body>
 
+    <h:form>
+
+        <h:panelGrid columns="2" cellpadding="8">
+
+            <h:outputLabel for="email"
+                           value="Email Address"/>
+
+            <h:inputText id="email"
+                         value="#{authBean.email}"
+                         required="true"
+                         requiredMessage="Email address is required."
+                         validatorMessage="Please enter a valid email address."
+                         autocomplete="off">
+
+                <f:validateRegex
+                    pattern="^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"/>
+
+            </h:inputText>
+
+        </h:panelGrid>
+
+        <br/>
+
+        <h:commandButton value="Generate Verification Code"
+                         action="#{authBean.createVerificationCode}"/>
+
+    </h:form>
+
+    <br/>
+
+    <h:link outcome="index.xhtml"
+            value="Back to Login"/>
+
+    <div class="nav-links">
+
+        <h:link outcome="/default.xhtml"
+                value="Back to Dashboard"
+                rendered="#{authBean.logged}"/>
+    </div>
+
+</div>
+
+</h:body>
 </html>

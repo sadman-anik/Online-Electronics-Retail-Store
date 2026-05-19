@@ -1,23 +1,66 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
       xmlns:f="jakarta.faces.core">
+
 <h:head>
-    <h:outputStylesheet library="css" name="style.css"/><title>Search Customer</title></h:head>
+    <title>Search Customer</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
 <h:body>
+
 <div class="page-container">
-<h1 class="page-header">Search for a Customer</h1>
-<div class="message"><h:messages globalOnly="false"/></div>
 
-<h:form>
-<h:panelGrid columns="2"><h:outputLabel value="Name"/><h:inputText value="#{customerController.searchName}"/></h:panelGrid>
-<h:commandButton value="Search for a customer" action="#{customerController.doSearchCustomer}"/>
-</h:form>
-<h:link outcome="listCustomers.xhtml" value="Customer List"/>
+    <h1 class="page-header">
+        Search for a Customer
+    </h1>
 
-<div class="nav-links">
-<h:link outcome="/default.xhtml" value="Main Page"/> |
-<h:commandLink value="Logout" action="#{authBean.logout}" rendered="#{authBean.logged}"/>
+    <div class="message">
+        <h:messages globalOnly="false"/>
+    </div>
+
+    <h:form>
+
+        <h:panelGrid columns="2" cellpadding="8">
+
+            <h:outputLabel value="Customer Name"/>
+
+            <h:inputText value="#{customerController.searchName}"
+                         required="true"/>
+
+        </h:panelGrid>
+
+        <br/>
+
+        <h:commandButton value="Search Customer"
+                         action="#{customerController.doSearchCustomer}"/>
+
+    </h:form>
+
+    <br/>
+
+    <h:link outcome="listCustomers.xhtml"
+            value="View Customers"/>
+
+    <div class="nav-links">
+
+        <h:link outcome="/default.xhtml"
+                value="Back to Dashboard"/>
+
+        |
+
+        <h:form rendered="#{authBean.logged}"
+                style="display:inline;">
+
+            <h:commandLink value="Logout"
+                           action="#{authBean.logout}"
+                           styleClass="logout-btn"/>
+
+        </h:form>
+
+    </div>
+
 </div>
-</div>
+
 </h:body>
 </html>

@@ -77,7 +77,7 @@ public class AuthenticationController implements Serializable {
         } catch (MessagingException ex) {
             Logger.getLogger(AuthenticationController.class.getName()).log(Level.SEVERE, null, ex);
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Email Error", "Unable to send code. Start FakeSMTP on port 2525, then try again."));
+                    "Email Error", EmailUtil.describeSendFailure(ex)));
             return null;
         }
     }
@@ -138,7 +138,7 @@ public class AuthenticationController implements Serializable {
         } catch (MessagingException ex) {
             Logger.getLogger(AuthenticationController.class.getName()).log(Level.SEVERE, null, ex);
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Email Error", "Unable to send recovery code. Start FakeSMTP on port 2525, then try again."));
+                    "Email Error", EmailUtil.describeSendFailure(ex)));
             return null;
         }
     }

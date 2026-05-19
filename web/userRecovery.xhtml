@@ -1,43 +1,80 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+
 <h:head>
-    <h:outputStylesheet library="css" name="style.css" />
     <title>Recover Account</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputScript library="js" name="register-password.js"/>
 </h:head>
+
 <h:body>
-    <div class="page-container">
-        <h1 class="page-header">Recover Your Account</h1>
-        <div class="message">
-            <h:messages globalOnly="false" />
-        </div>
 
-        <p>Retrieve the recovery code from your email and enter below.</p>
-        <h:form>
-            <h:panelGrid columns="2">
-                <h:outputLabel value="Recovery Code" />
-                <h:inputText value="#{authBean.verificationcode}" />
-                <h:outputLabel value="First Name" />
-                <h:outputText value="#{authBean.recoveryUser.firstname}" />
-                <h:outputLabel value="Last Name" />
-                <h:outputText value="#{authBean.recoveryUser.lastname}" />
-                <h:outputLabel value="Username" />
-                <h:outputText value="#{authBean.recoveryUser.username}" />
-                <h:outputLabel for="password" value="New Password" />
-                <h:inputSecret id="password" value="#{authBean.password}" required="true"
-                    requiredMessage="New password is required." />
-                <h:outputLabel for="passwordv" value="Confirm New Password" />
-                <h:inputSecret id="passwordv" value="#{authBean.passwordv}" required="true"
-                    requiredMessage="Confirm new password is required." />
-            </h:panelGrid>
-            <h:commandButton value="Recover" action="#{authBean.resetUser}" />
-        </h:form>
+<div class="page-container">
 
-        <div class="nav-links">
-            <h:link outcome="login.xhtml" value="Back to Login" />
-            <h:form rendered="#{authBean.logged}" style="display:inline;">
-                <h:commandLink value="Logout" action="#{authBean.logout}" styleClass="logout-btn" />
-            </h:form>
-        </div>
+    <h1 class="page-header">Recover Your Account</h1>
+
+    <div class="message">
+        <h:messages globalOnly="false"/>
     </div>
-</h:body>
 
+    <p>Retrieve the recovery code from your email and enter below.</p>
+
+    <h:form prependId="false">
+
+        <h:panelGrid columns="2" cellpadding="8">
+
+            <h:outputLabel value="Recovery Code"/>
+            <h:inputText value="#{authBean.verificationcode}"
+                         required="true"
+                         requiredMessage="Recovery code is required."/>
+
+            <h:outputLabel value="First Name"/>
+            <h:outputText value="#{authBean.recoveryUser.firstname}"/>
+
+            <h:outputLabel value="Last Name"/>
+            <h:outputText value="#{authBean.recoveryUser.lastname}"/>
+
+            <h:outputLabel value="Username"/>
+            <h:outputText value="#{authBean.recoveryUser.username}"/>
+
+            <h:outputLabel for="password" value="New Password"/>
+            <h:inputSecret id="password"
+                           value="#{authBean.password}"
+                           required="true"
+                           requiredMessage="New password is required."/>
+
+            <h:outputLabel for="passwordv" value="New Password Verify"/>
+            <h:inputSecret id="passwordv"
+                           value="#{authBean.passwordv}"
+                           required="true"
+                           requiredMessage="Password verification is required."/>
+
+        </h:panelGrid>
+
+        <div class="password-feedback">
+            <p id="passwordMatch" class="feedback-item feedback-pending">Passwords have not been entered yet.</p>
+            <ul class="requirement-list">
+                <li id="reqLength" class="feedback-pending">At least 8 characters</li>
+                <li id="reqUpper" class="feedback-pending">At least one uppercase letter</li>
+                <li id="reqLower" class="feedback-pending">At least one lowercase letter</li>
+                <li id="reqNumber" class="feedback-pending">At least one number</li>
+                <li id="reqSpecial" class="feedback-pending">At least one special character</li>
+            </ul>
+        </div>
+
+        <br/>
+
+        <h:commandButton value="Reset Password"
+                         action="#{authBean.resetUser}"/>
+
+    </h:form>
+
+    <div class="nav-links">
+        <h:link outcome="/login.xhtml" value="Back to Login"/>
+    </div>
+
+</div>
+
+</h:body>
 </html>

@@ -1,29 +1,115 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
       xmlns:f="jakarta.faces.core">
-<h:head>
-    <h:outputStylesheet library="css" name="style.css"/><title>Orders</title></h:head>
-<h:body>
-<div class="page-container">
-<h1 class="page-header">List of Orders</h1>
-<div class="message"><h:messages globalOnly="false"/></div>
 
-<h:form>
-<h:dataTable value="#{orderController.orderList}" var="o" border="1">
-<h:column><f:facet name="header">Order #</f:facet>#{o.id}</h:column>
-<h:column><f:facet name="header">Customer</f:facet>#{o.customer.name}</h:column>
-<h:column><f:facet name="header">Device</f:facet>#{o.product.brandModel}</h:column>
-<h:column><f:facet name="header">Unit Price</f:facet>#{o.unitPrice}</h:column>
-<h:column><f:facet name="header">Qty</f:facet>#{o.quantity}</h:column>
-<h:column><f:facet name="header">Total Price</f:facet>#{o.totalPrice}</h:column>
-<h:column><f:facet name="header">Action</f:facet><h:commandLink value="Delete" action="#{orderController.doDeleteOrder(o.id)}"/></h:column>
-</h:dataTable>
+<h:head>
+    <title>Orders</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
+<h:body>
+
+<div class="page-container">
+
+    <h1 class="page-header">
+        List of Orders
+    </h1>
+
+    <div class="message">
+        <h:messages globalOnly="false"/>
+    </div>
+    
+    <h:form>
+
+    <h:panelGrid columns="3" cellpadding="6">
+
+        <h:outputLabel value="Search"/>
+
+        <h:inputText value="#{orderController.searchOrderId}"
+                     required="true"
+                     requiredMessage="Order number is required."/>
+        <h:commandButton value="Search"
+                 action="#{orderController.doSearchOrder}"/>
+
+
+    </h:panelGrid>
+
 </h:form>
-<br/><h:link outcome="newOrder.xhtml" value="Create a new Order"/>
-<div class="nav-links">
-<h:link outcome="/default.xhtml" value="Main Page"/> |
-<h:commandLink value="Logout" action="#{authBean.logout}" rendered="#{authBean.logged}"/>
+
+    <h:form>
+
+        <h:dataTable value="#{orderController.orderList}"
+                     var="o"
+                     border="1"
+                     style="width:100%;">
+
+            <h:column>
+                <f:facet name="header">Order #</f:facet>
+                #{o.id}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Customer</f:facet>
+                #{o.customer.name}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Device</f:facet>
+                #{o.product.brandModel}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Unit Price</f:facet>
+                $#{o.unitPrice}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Quantity</f:facet>
+                #{o.quantity}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Total Price</f:facet>
+                $#{o.totalPrice}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+
+                <h:commandLink value="Delete"
+                               action="#{orderController.doDeleteOrder(o.id)}"
+                               onclick="return confirm('Delete this order?');"/>
+
+            </h:column>
+
+        </h:dataTable>
+
+    </h:form>
+
+    <br/>
+
+    <h:link outcome="newOrder.xhtml"
+            value="Create New Order"/>
+
+    <div class="nav-links">
+
+        <h:link outcome="/default.xhtml"
+                value="Back to Dashboard"/>
+
+        |
+
+        <h:form rendered="#{authBean.logged}"
+                style="display:inline;">
+
+            <h:commandLink value="Logout"
+                           action="#{authBean.logout}"
+                           styleClass="logout-btn"/>
+
+        </h:form>
+
+    </div>
+
 </div>
-</div>
+
 </h:body>
 </html>

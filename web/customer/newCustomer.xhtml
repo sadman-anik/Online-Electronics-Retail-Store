@@ -1,56 +1,61 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
 
 <h:head>
     <title>Create Customer</title>
-    <h:outputStylesheet library="css" name="style.css" />
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 
 <h:body>
 
-    <div class="page-container">
+<div class="page-container">
 
-        <h1 class="page-header">
-            Create New Customer
-        </h1>
+    <h1 class="page-header">Create New Customer</h1>
 
-        <div class="message">
-            <h:messages globalOnly="false" />
-        </div>
-
-        <h:form>
-
-            <h:panelGrid columns="2" cellpadding="8">
-
-                <h:outputLabel for="customerName" value="Customer Name" />
-                <h:inputText id="customerName" value="#{customerController.customer.name}" required="true"
-                    requiredMessage="Customer name is required." />
-
-                <h:outputLabel for="address" value="Address" />
-                <h:inputTextarea id="address" value="#{customerController.customer.address}" rows="4" required="true"
-                    requiredMessage="Address is required." />
-
-                <h:outputLabel for="emailAddress" value="Email Address" />
-                <h:inputText id="emailAddress" value="#{customerController.customer.emailAddress}" required="true"
-                    requiredMessage="Email address is required." />
-
-            </h:panelGrid>
-
-            <br />
-
-            <h:commandButton value="Create Customer" action="#{customerController.doCreateCustomer}" />
-
-        </h:form>
-
-        <div class="nav-links">
-
-            <h:link outcome="/customer/listCustomers.xhtml" value="View Customers" />
-            |
-            <h:link outcome="/default.xhtml" value="Back to Dashboard" styleClass="dashboard-link" />
-
-        </div>
-
+    <div class="message">
+        <h:messages globalOnly="false"/>
     </div>
 
-</h:body>
+    <h:form>
 
+        <h:panelGrid columns="2" cellpadding="8">
+
+            <h:outputLabel for="name" value="Customer Name"/>
+            <h:inputText id="name"
+                         value="#{customerController.customer.name}"
+                         required="true"
+                         requiredMessage="Customer name is required."/>
+
+            <h:outputLabel for="address" value="Address"/>
+            <h:inputTextarea id="address"
+                             value="#{customerController.customer.address}"
+                             rows="4"
+                             required="true"
+                             requiredMessage="Address is required."/>
+
+            <h:outputLabel for="email" value="Email Address"/>
+            <h:inputText id="email"
+                         value="#{customerController.customer.emailAddress}"
+                         required="true"
+                         requiredMessage="Email address is required."/>
+
+        </h:panelGrid>
+
+        <br/>
+
+        <h:commandButton value="Create Customer"
+                         action="#{customerController.doCreateCustomer}"/>
+
+    </h:form>
+
+    <div class="nav-links">
+        <h:link outcome="/customer/listCustomers.xhtml" value="View Customers"/>
+        |
+        <h:link outcome="/default.xhtml" value="Back to Dashboard"/>
+    </div>
+
+</div>
+
+</h:body>
 </html>

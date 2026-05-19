@@ -21,7 +21,7 @@
 
         <h2>Order Details</h2>
 
-        <h:panelGrid columns="2" cellpadding="5">
+        <h:panelGrid columns="2" cellpadding="8">
 
             <h:outputLabel for="product" value="Product"/>
 
@@ -33,10 +33,10 @@
                 <f:selectItem itemLabel="Select Product"
                               itemValue=""/>
 
-                <f:selectItems value="#{orderController.products}"
-                               var="p"
-                               itemValue="#{p.productId}"
-                               itemLabel="#{p.brand} #{p.model}"/>
+                <f:selectItems value="#{orderController.productList}"
+               var="p"
+               itemValue="#{p.id}"
+               itemLabel="#{p.id} - #{p.brand} #{p.model}"/>
 
             </h:selectOneMenu>
 
@@ -53,7 +53,7 @@
 
         <h2>Customer Details</h2>
 
-        <h:panelGrid columns="2" cellpadding="5">
+        <h:panelGrid columns="2" cellpadding="8">
 
             <h:outputLabel for="customer" value="Select Customer"/>
 
@@ -65,10 +65,10 @@
                 <f:selectItem itemLabel="Select Customer"
                               itemValue=""/>
 
-                <f:selectItems value="#{orderController.customers}"
-                               var="c"
-                               itemValue="#{c.customerId}"
-                               itemLabel="#{c.customerId} - #{c.firstName} #{c.lastName}"
+                <f:selectItems value="#{orderController.customerList}"
+                                var="c"
+                                itemValue="#{c.id}"
+                                itemLabel="#{c.id} - #{c.name}"/>
 
             </h:selectOneMenu>
 
@@ -76,32 +76,21 @@
 
         <br/>
 
-        <h:panelGroup rendered="#{empty orderController.customerId}">
+        <p>If the customer does not exist, create a new customer first.</p>
 
-            <p>
-                If the customer does not exist, create a new customer below.
-            </p>
-
-            <h:link outcome="/customer/newCustomer.xhtml"
-                    value="Create New Customer"/>
-
-        </h:panelGroup>
+        <h:link outcome="/customer/newCustomer.xhtml"
+                value="Create New Customer"/>
 
         <br/><br/>
 
         <h:commandButton value="Create Order"
-                         action="#{orderController.createOrder}"/>
+                         action="#{orderController.doCreateOrder}"/>
 
     </h:form>
 
     <div class="nav-links">
-
-        <h:link outcome="/default.xhtml"
-                value="Main Page"/> |
-
-        <h:link outcome="/order/listOrders.xhtml"
-                value="List Orders"/>
-
+        <h:link outcome="/default.xhtml" value="Back to Dashboard"/> |
+        <h:link outcome="/order/listOrders.xhtml" value="List Orders"/>
     </div>
 
 </div>

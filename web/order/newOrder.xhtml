@@ -1,49 +1,99 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+
 <h:head>
     <title>Create Order</title>
-    <h:outputStylesheet library="css" name="style.css" />
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
-<h:body>
-    <div class="page-container">
-        <h1 class="page-header">Create New Order</h1>
-        <div class="message">
-            <h:messages globalOnly="false" />
-        </div>
-        <h:form>
-            <h2>Order Details</h2>
-            <h:panelGrid columns="2" cellpadding="5">
-                <h:outputLabel for="product" value="Product" />
-                <h:selectOneMenu id="product" value="#{orderController.productId}" required="true"
-                    requiredMessage="Product is required.">
-                    <f:selectItem itemLabel="Select Product" itemValue="" />
-                    <f:selectItems value="#{orderController.productList}" var="p" itemValue="#{p.id}"
-                        itemLabel="#{p.id} - #{p.brand} #{p.model}" />
-                </h:selectOneMenu>
-                <h:outputLabel for="quantity" value="Quantity" />
-                <h:inputText id="quantity" value="#{orderController.quantity}" required="true"
-                    requiredMessage="Quantity is required." />
-            </h:panelGrid><br /><br />
-            <h2>Customer Details</h2>
-            <h:panelGrid columns="2" cellpadding="5">
-                <h:outputLabel for="customer" value="Select Customer" />
-                <h:selectOneMenu id="customer" value="#{orderController.customerId}" required="true"
-                    requiredMessage="Customer is required.">
-                    <f:selectItem itemLabel="Select Customer" itemValue="" />
-                    <f:selectItems value="#{orderController.customerList}" var="c" itemValue="#{c.id}"
-                        itemLabel="#{c.id} - #{c.name}" />
-                </h:selectOneMenu>
-            </h:panelGrid><br />
-            <h:panelGroup rendered="#{empty orderController.customerId}">
-                <p>If the customer does not exist, create a new customer below.</p>
-                <h:link outcome="/customer/newCustomer.xhtml" value="Create New Customer" />
-            </h:panelGroup><br /><br />
-            <h:commandButton value="Create Order" action="#{orderController.doCreateOrder}" />
-        </h:form>
-        <div class="nav-links">
-            <h:link outcome="/default.xhtml" value="Back to Dashboard" /> |
-            <h:link outcome="/order/listOrders.xhtml" value="List Orders" />
-        </div>
-    </div>
-</h:body>
 
+<h:body>
+
+<div class="page-container">
+
+    <h1 class="page-header">Create New Order</h1>
+
+    <div class="message">
+        <h:messages globalOnly="false"/>
+    </div>
+
+    <h:form>
+
+        <h2>Order Details</h2>
+
+        <h:panelGrid columns="2" cellpadding="8">
+
+            <h:outputLabel for="product" value="Product"/>
+
+            <h:selectOneMenu id="product"
+                             value="#{orderController.productId}"
+                             required="true"
+                             requiredMessage="Product is required.">
+
+                <f:selectItem itemLabel="Select Product"
+                              itemValue=""/>
+
+                <f:selectItems value="#{orderController.productList}"
+               var="p"
+               itemValue="#{p.id}"
+               itemLabel="#{p.id} - #{p.brand} #{p.model}"/>
+
+            </h:selectOneMenu>
+
+            <h:outputLabel for="quantity" value="Quantity"/>
+
+            <h:inputText id="quantity"
+                         value="#{orderController.quantity}"
+                         required="true"
+                         requiredMessage="Quantity is required."/>
+
+        </h:panelGrid>
+
+        <br/><br/>
+
+        <h2>Customer Details</h2>
+
+        <h:panelGrid columns="2" cellpadding="8">
+
+            <h:outputLabel for="customer" value="Select Customer"/>
+
+            <h:selectOneMenu id="customer"
+                             value="#{orderController.customerId}"
+                             required="true"
+                             requiredMessage="Customer is required.">
+
+                <f:selectItem itemLabel="Select Customer"
+                              itemValue=""/>
+
+                <f:selectItems value="#{orderController.customerList}"
+                                var="c"
+                                itemValue="#{c.id}"
+                                itemLabel="#{c.id} - #{c.name}"/>
+
+            </h:selectOneMenu>
+
+        </h:panelGrid>
+
+        <br/>
+
+        <p>If the customer does not exist, create a new customer first.</p>
+
+        <h:link outcome="/customer/newCustomer.xhtml"
+                value="Create New Customer"/>
+
+        <br/><br/>
+
+        <h:commandButton value="Create Order"
+                         action="#{orderController.doCreateOrder}"/>
+
+    </h:form>
+
+    <div class="nav-links">
+        <h:link outcome="/default.xhtml" value="Back to Dashboard"/> |
+        <h:link outcome="/order/listOrders.xhtml" value="List Orders"/>
+    </div>
+
+</div>
+
+</h:body>
 </html>

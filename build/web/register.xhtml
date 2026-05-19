@@ -4,6 +4,7 @@
 
 <h:head>
     <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputScript library="js" name="register-password.js"/>
     <title>Register</title>
 </h:head>
 
@@ -18,7 +19,7 @@
 
     <p>Retrieve the verification code from your email and enter below.</p>
 
-    <h:form>
+    <h:form prependId="false">
 
         <h:panelGrid columns="2" cellpadding="5">
 
@@ -63,6 +64,17 @@
 
         </h:panelGrid>
 
+        <div class="password-feedback">
+            <p id="passwordMatch" class="feedback-item feedback-pending">Passwords have not been entered yet.</p>
+            <ul class="requirement-list">
+                <li id="reqLength" class="feedback-pending">At least 8 characters</li>
+                <li id="reqUpper" class="feedback-pending">At least one uppercase letter</li>
+                <li id="reqLower" class="feedback-pending">At least one lowercase letter</li>
+                <li id="reqNumber" class="feedback-pending">At least one number</li>
+                <li id="reqSpecial" class="feedback-pending">At least one special character</li>
+            </ul>
+        </div>
+
         <br/>
 
         <h:commandButton value="Create"
@@ -73,16 +85,13 @@
     <br/>
 
     <div class="nav-links">
-
-    <h:link outcome="/default.xhtml" value="Main Page"/>
-
-    |
+        <h:link outcome="/login.xhtml" value="Back to Login"/>
+    </div>
 
     <h:link outcome="logout.xhtml"
             value="Logout"
             rendered="#{authBean.logged}"/>
 
-</div>
 </div>
 </h:body>
 </html>

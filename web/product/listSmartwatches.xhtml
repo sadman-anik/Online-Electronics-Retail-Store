@@ -1,59 +1,117 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="jakarta.faces.html" xmlns:f="jakarta.faces.core">
-<h:head>
-    <h:outputStylesheet library="css" name="style.css" />
-    <title>Smartwatches</title>
-</h:head>
-<h:body>
-    <div class="page-container">
-        <h1 class="page-header">The Stock of Smartwatches</h1>
-        <div class="message">
-            <h:messages globalOnly="false" />
-        </div>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
 
-        <h:form styleClass="search-panel">
-            <h:outputLabel for="smartwatchModel" value="Search by model" />
-            <h:inputText id="smartwatchModel" value="#{productController.searchModel}" />
-            <h:commandButton value="Search" action="#{productController.doSearchSmartwatch}" />
+<h:head>
+    <title>Smartwatch Stock</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
+<h:body>
+
+<div class="page-container">
+
+    <h1 class="page-header">
+        The Stock of Smartwatches
+    </h1>
+
+    <div class="message">
+        <h:messages globalOnly="false"/>
+    </div>
+    
+    <h:form>
+
+    <h:panelGrid columns="3" cellpadding="6">
+
+        <h:outputLabel value="Search"/>
+
+        <h:inputText value="#{productController.searchModel}"/>
+<h:commandButton value="Search"
+                 action="#{productController.doSearchSmartwatch}"/>
+
+        <h:commandButton value="Search"
+                         action="..."/>
+
+    </h:panelGrid>
+
+</h:form>
+
+    <h:dataTable value="#{productController.smartwatchList}"
+                 var="s"
+                 border="1"
+                 style="width:100%;">
+
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            #{s.id}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Brand</f:facet>
+            #{s.brand}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Model</f:facet>
+            #{s.model}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Display Size</f:facet>
+            #{s.displaySize}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Operating System</f:facet>
+            #{s.operatingSystem}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Price</f:facet>
+            $#{s.price}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Stock</f:facet>
+            #{s.stockNumber}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Health Monitoring</f:facet>
+            #{s.healthMonitoring}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Fitness Tracking</f:facet>
+            #{s.fitnessTracking}
+        </h:column>
+
+    </h:dataTable>
+
+    <br/>
+
+    <h:link outcome="newSmartwatch.xhtml"
+            value="Create New Smartwatch"/>
+
+    <div class="nav-links">
+
+        <h:link outcome="/default.xhtml"
+                value="Back to Dashboard"/>
+
+        |
+
+        <h:form rendered="#{authBean.logged}"
+                style="display:inline;">
+
+            <h:commandLink value="Logout"
+                           action="#{authBean.logout}"
+                           styleClass="logout-btn"/>
+
         </h:form>
 
-        <h:dataTable value="#{productController.smartwatchList}" var="s" border="1">
-            <h:column>
-                <f:facet name="header">ID</f:facet>#{s.id}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Brand</f:facet>#{s.brand}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Model</f:facet>#{s.model}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Display Size</f:facet>#{s.displaySize}
-            </h:column>
-            <h:column>
-                <f:facet name="header">OS</f:facet>#{s.operatingSystem}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Price</f:facet>#{s.price}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Stock</f:facet>#{s.stockNumber}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Health</f:facet>#{s.healthMonitoring}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Fitness</f:facet>#{s.fitnessTracking}
-            </h:column>
-        </h:dataTable>
-        <br />
-        <h:link outcome="newSmartwatch.xhtml" value="Create a New Smartwatch" />
-        <div class="nav-links">
-            <h:link outcome="/default.xhtml" value="Back to Dashboard" /> |
-            <h:form rendered="#{authBean.logged}" style="display:inline;">
-                <h:commandLink value="Logout" action="#{authBean.logout}" styleClass="logout-btn" />
-            </h:form>
-        </div>
     </div>
-</h:body>
 
+</div>
+
+</h:body>
 </html>

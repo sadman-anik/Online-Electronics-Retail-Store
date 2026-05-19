@@ -1,25 +1,53 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
       xmlns:f="jakarta.faces.core">
+
 <h:head>
-    <h:outputStylesheet library="css" name="style.css"/><title>Recovery</title></h:head>
+    <title>Password Recovery</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
 <h:body>
+
 <div class="page-container">
-<h1 class="page-header">Recovery from Your Email</h1>
-<div class="message"><h:messages globalOnly="false"/></div>
 
-<h:form>
-    <h:panelGrid columns="2">
-        <h:outputLabel value="Email Address"/>
-        <h:inputText value="#{authBean.email}"/>
-    </h:panelGrid>
-    <h:commandButton value="Create Recovery Code" action="#{authBean.createRecoveryCode}"/>
-</h:form>
+    <h1 class="page-header">
+        Recovery from Your Email
+    </h1>
 
-<div class="nav-links">
-<h:link outcome="/default.xhtml" value="Main Page"/> |
-<h:commandLink value="Logout" action="#{authBean.logout}" rendered="#{authBean.logged}"/>
+    <div class="message">
+        <h:messages globalOnly="false"/>
+    </div>
+
+    <h:form>
+
+        <h:panelGrid columns="2" cellpadding="8">
+
+            <h:outputLabel value="Email Address"/>
+
+            <h:inputText value="#{authBean.email}"
+                         required="true"
+                         requiredMessage="Email address is required."/>
+
+        </h:panelGrid>
+
+        <br/>
+
+        <h:commandButton value="Recover Password"
+                 action="#{authBean.createRecoveryCode}"/>
+
+    </h:form>
+
+    <br/>
+
+    <div class="nav-links">
+
+        <h:link outcome="/default.xhtml"
+                value="Back to Login"/>
+
+    </div>
+
 </div>
-</div>
+
 </h:body>
 </html>

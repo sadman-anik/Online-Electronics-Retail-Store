@@ -305,3 +305,35 @@ input[type=button]:hover {
 .action-link:hover {
     background: #e8f0ba;
 }
+
+.password-feedback {
+    margin-top: 14px;
+    padding: 14px 16px;
+    border: 1px solid #e4f0a5;
+    border-radius: 8px;
+    background: #f8fbeb;
+}
+
+.feedback-item,
+.requirement-list {
+    margin: 0;
+}
+
+.requirement-list {
+    padding-left: 20px;
+    margin-top: 8px;
+}
+
+.feedback-pending {
+    color: #6b7280;
+}
+
+.feedback-valid {
+    color: #166534;
+    font-weight: bold;
+}
+
+.feedback-invalid {
+    color: #c0392b;
+    font-weight: bold;
+}

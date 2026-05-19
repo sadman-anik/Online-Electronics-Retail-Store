@@ -1,37 +1,109 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
       xmlns:f="jakarta.faces.core">
+
 <h:head>
-    <h:outputStylesheet library="css" name="style.css"/><title>New Smartwatch</title></h:head>
+    <title>Create Smartwatch</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+
 <h:body>
+
 <div class="page-container">
-<h1 class="page-header">Create a New Smartwatch</h1>
-<div class="message"><h:messages globalOnly="false"/></div>
 
-<h:form>
-<h:panelGrid columns="2">
-<h:outputLabel value="Brand"/><h:inputText value="#{productController.smartwatch.brand}"/>
-<h:outputLabel value="Model"/><h:inputText value="#{productController.smartwatch.model}"/>
-<h:outputLabel value="Display Size"/><h:inputText value="#{productController.smartwatch.displaySize}"/>
-<h:outputLabel value="Weight"/><h:inputText value="#{productController.smartwatch.weight}"/>
-<h:outputLabel value="Operating System"/><h:inputText value="#{productController.smartwatch.operatingSystem}"/>
-<h:outputLabel value="Connectivity"/><h:inputText value="#{productController.smartwatch.connectivity}"/>
-<h:outputLabel value="Wi-Fi Capable"/><h:selectBooleanCheckbox value="#{productController.smartwatch.wifiCapable}"/>
-<h:outputLabel value="Price"/><h:inputText value="#{productController.smartwatch.price}"/>
-<h:outputLabel value="Stock Number"/><h:inputText value="#{productController.smartwatch.stockNumber}"/>
-<h:outputLabel value="Health Monitoring"/><h:inputText value="#{productController.smartwatch.healthMonitoring}"/>
-<h:outputLabel value="Fitness Tracking"/><h:inputText value="#{productController.smartwatch.fitnessTracking}"/>
-<h:outputLabel value="Wearable Connectivity"/><h:inputText value="#{productController.smartwatch.wearableConnectivity}"/>
-<h:outputLabel value="Description"/><h:inputTextarea value="#{productController.smartwatch.description}"/>
-</h:panelGrid>
-<h:commandButton value="Create a smartwatch" action="#{productController.doCreateSmartwatch}"/>
-</h:form>
-<h:link outcome="listSmartwatches.xhtml" value="The Stock of Smartwatches"/>
+    <h1 class="page-header">
+        Create a New Smartwatch
+    </h1>
 
-<div class="nav-links">
-<h:link outcome="/default.xhtml" value="Main Page"/> |
-<h:commandLink value="Logout" action="#{authBean.logout}" rendered="#{authBean.logged}"/>
+    <div class="message">
+        <h:messages globalOnly="false"/>
+    </div>
+
+    <h:form>
+
+        <h:panelGrid columns="2" cellpadding="8">
+
+            <h:outputLabel value="Brand"/>
+            <h:inputText value="#{productController.smartwatch.brand}"
+                         required="true"/>
+
+            <h:outputLabel value="Model"/>
+            <h:inputText value="#{productController.smartwatch.model}"
+                         required="true"/>
+
+            <h:outputLabel value="Display Size"/>
+            <h:inputText value="#{productController.smartwatch.displaySize}"
+                         required="true"/>
+
+            <h:outputLabel value="Weight"/>
+            <h:inputText value="#{productController.smartwatch.weight}"
+                         required="true"/>
+
+            <h:outputLabel value="Operating System"/>
+            <h:inputText value="#{productController.smartwatch.operatingSystem}"
+                         required="true"/>
+
+            <h:outputLabel value="Connectivity"/>
+            <h:inputText value="#{productController.smartwatch.connectivity}"
+                         required="true"/>
+
+            <h:outputLabel value="Wi-Fi Capable"/>
+            <h:selectBooleanCheckbox value="#{productController.smartwatch.wifiCapable}"/>
+
+            <h:outputLabel value="Price"/>
+            <h:inputText value="#{productController.smartwatch.price}"
+                         required="true"/>
+
+            <h:outputLabel value="Stock Number"/>
+            <h:inputText value="#{productController.smartwatch.stockNumber}"
+                         required="true"/>
+
+            <h:outputLabel value="Health Monitoring"/>
+            <h:inputText value="#{productController.smartwatch.healthMonitoring}"/>
+
+            <h:outputLabel value="Fitness Tracking"/>
+            <h:inputText value="#{productController.smartwatch.fitnessTracking}"/>
+
+            <h:outputLabel value="Wearable Connectivity"/>
+            <h:inputText value="#{productController.smartwatch.wearableConnectivity}"/>
+
+            <h:outputLabel value="Description"/>
+            <h:inputTextarea value="#{productController.smartwatch.description}"
+                             rows="4"/>
+
+        </h:panelGrid>
+
+        <br/>
+
+        <h:commandButton value="Create Smartwatch"
+                         action="#{productController.doCreateSmartwatch}"/>
+
+    </h:form>
+
+    <br/>
+
+    <h:link outcome="listSmartwatches.xhtml"
+            value="View Smartwatch Stock"/>
+
+    <div class="nav-links">
+
+        <h:link outcome="/default.xhtml"
+                value="Back to Dashboard"/>
+
+        |
+
+        <h:form rendered="#{authBean.logged}"
+                style="display:inline;">
+
+            <h:commandLink value="Logout"
+                           action="#{authBean.logout}"
+                           styleClass="logout-btn"/>
+
+        </h:form>
+
+    </div>
+
 </div>
-</div>
+
 </h:body>
 </html>
