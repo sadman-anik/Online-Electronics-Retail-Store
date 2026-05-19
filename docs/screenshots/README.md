@@ -86,4 +86,4 @@ Order creation form showing product stock, unit price, and estimated total befor
 
 ![Order list page](order-list.png)
 
-Order list showing customer, device, unit price, quantity, total price, and delete action.
+Order list showing customer, device, unit price, quantity, total price, and view action.
