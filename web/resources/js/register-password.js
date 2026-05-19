@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     function setState(element, valid, pending) {
+        // Replace the previous feedback state before applying the current one.
         element.classList.remove("feedback-pending", "feedback-valid", "feedback-invalid");
         element.classList.add(pending ? "feedback-pending" : valid ? "feedback-valid" : "feedback-invalid");
     }
@@ -23,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var value = password.value;
         var confirmValue = confirmPassword.value;
 
+        // Requirement element ids match the keys in the requirements map.
         Object.keys(requirements).forEach(function (id) {
             var element = document.getElementById(id);
             setState(element, requirements[id](value), value.length === 0);

@@ -7,6 +7,7 @@ GLASSFISH_ASADMIN="$HOME/EnterpriseApps/glassfish7/bin/asadmin"
 FAKESMTP_JAR="fakeSMTP-2.0.jar"
 
 echo "Stopping GlassFish..."
+# Continue shutdown even if a service is already stopped.
 "$GLASSFISH_ASADMIN" stop-domain || true
 
 echo ""

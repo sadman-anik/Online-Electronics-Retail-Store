@@ -15,6 +15,7 @@ public class ValidationUtil {
     }
 
     public static boolean isStrongPassword(String value) {
+        // Keep server-side password rules aligned with the registration page feedback.
         return value != null
                 && value.length() >= 8
                 && value.matches(".*[A-Z].*")

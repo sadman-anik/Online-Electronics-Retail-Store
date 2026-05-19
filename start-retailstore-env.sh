@@ -6,6 +6,7 @@ MYSQL_SERVER="/usr/local/mysql/support-files/mysql.server"
 GLASSFISH_ASADMIN="$HOME/EnterpriseApps/glassfish7/bin/asadmin"
 FAKESMTP_DIR="$HOME/EnterpriseApps/FakeSMTP"
 FAKESMTP_JAR="fakeSMTP-2.0.jar"
+# Allow MYSQL_USER to be overridden when root is not the local database user.
 MYSQL_USER=${MYSQL_USER:-root}
 
 echo "Starting MySQL..."
@@ -23,6 +24,7 @@ echo ""
 echo "Starting FakeSMTP on port 2525..."
 echo "Keep the FakeSMTP window open and click 'Start Server' if needed."
 
+# Run FakeSMTP from its install directory so the jar path resolves correctly.
 cd "$FAKESMTP_DIR"
 
 java --add-exports java.desktop/com.apple.eawt=ALL-UNNAMED \

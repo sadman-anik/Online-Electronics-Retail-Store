@@ -2,6 +2,7 @@
 
 set -e
 
+# Resolve this script's folder so restart works from any current directory.
 SCRIPT_DIR="${0:A:h}"
 
 echo "Stopping services..."

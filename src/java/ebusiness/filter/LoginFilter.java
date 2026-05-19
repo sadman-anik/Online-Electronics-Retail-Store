@@ -27,6 +27,7 @@ public class LoginFilter implements Filter {
         String url = req.getRequestURI();
         String context = req.getServletContext().getContextPath();
 
+        // Public pages and static resources must stay reachable before login.
         boolean publicPage = url.endsWith("index.html") || url.endsWith("index.xhtml") || url.endsWith("login.xhtml")
                 || url.endsWith("emailVerification.xhtml") || url.endsWith("register.xhtml")
                 || url.endsWith("emailRecovery.xhtml") || url.endsWith("userRecovery.xhtml")
@@ -34,6 +35,7 @@ public class LoginFilter implements Filter {
 
         boolean loggedIn = session != null && session.isLogged();
 
+        // Keep unauthenticated users out of application pages and logged-in users out of auth forms.
         if (!loggedIn && !publicPage) {
             resp.sendRedirect(context + "/login.xhtml");
         } else if (loggedIn && (url.endsWith("login.xhtml") || url.endsWith("register.xhtml") || url.endsWith("emailVerification.xhtml") || url.endsWith("emailRecovery.xhtml") || url.endsWith("userRecovery.xhtml"))) {

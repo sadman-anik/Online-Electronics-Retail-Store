@@ -69,6 +69,7 @@ public class AuthenticationController implements Serializable {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email already registered!", "Please choose a different email."));
             return null;
         }
+        // Store the code in the session bean until the user completes registration.
         verificationcode1 = generateCode();
         try {
             EmailUtil.sendCode(email, "The Verification Code", "The Verification Code", verificationcode1);
@@ -112,6 +113,7 @@ public class AuthenticationController implements Serializable {
         user.setLastname(lname);
         user.setUsername(username);
         user.setEmail(email);
+        // Only the hashed password is persisted; the plain text value is cleared below.
         user.setPassword(PasswordUtil.hashPassword(password));
         authenticationEJB.createUser(user);
         clearFields();
@@ -128,6 +130,7 @@ public class AuthenticationController implements Serializable {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Email!", "Email '" + email + "' does not exist."));
             return null;
         }
+        // Keep the matched user in session so resetUser can update the same account.
         verificationcode1 = generateCode();
         try {
             EmailUtil.sendCode(email, "The Recovery Code", "The Recovery Code", verificationcode1);
@@ -163,6 +166,7 @@ public class AuthenticationController implements Serializable {
     private String generateCode() {
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz!@#$%&*-+=?";
         StringBuilder sb = new StringBuilder();
+        // SecureRandom avoids predictable verification and recovery codes.
         while (sb.length() < 20) {
             sb.append(chars.charAt(RANDOM.nextInt(chars.length())));
         }

@@ -14,6 +14,7 @@ public class PasswordUtil {
             MessageDigest md = MessageDigest.getInstance("SHA-512");
             byte[] bytes = md.digest(plainPassword.getBytes(StandardCharsets.UTF_8));
             StringBuilder sb = new StringBuilder();
+            // Convert each byte to two hex characters for stable database comparison.
             for (byte b : bytes) {
                 sb.append(String.format("%02x", b));
             }

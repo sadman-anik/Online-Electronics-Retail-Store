@@ -57,6 +57,7 @@ public class OrderEJB {
         order.setUnitPrice(product.getPrice());
         order.setCreatedAt(new Date());
 
+        // The order and stock update run in one transaction, so failures roll back both.
         product.setStockNumber(product.getStockNumber() - quantity);
         em.persist(order);
         return order;
@@ -80,6 +81,7 @@ public class OrderEJB {
         }
         Product product = order.getProduct();
         if (product != null && order.getQuantity() != null) {
+            // Deleting an order returns its quantity to stock.
             int currentStock = product.getStockNumber() == null ? 0 : product.getStockNumber();
             product.setStockNumber(currentStock + order.getQuantity());
         }

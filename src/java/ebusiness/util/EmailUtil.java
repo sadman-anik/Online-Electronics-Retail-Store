@@ -16,6 +16,7 @@ public class EmailUtil {
     private static final String FROM_EMAIL = "CENTRE@glassfish.com";
 
     public static void sendCode(String toEmail, String subject, String label, String code) throws MessagingException {
+        // FakeSMTP listens locally during development, so no authentication is configured here.
         Properties props = new Properties();
         props.put("mail.smtp.host", SMTP_HOST);
         props.put("mail.smtp.port", String.valueOf(SMTP_PORT));
