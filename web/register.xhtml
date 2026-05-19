@@ -68,17 +68,9 @@
 
         <br />
 
-        <h:link outcome="index.xhtml" value="Welcome Page" />
-
         <div class="nav-links">
 
-            <h:link outcome="/default.xhtml" value="Back to Dashboard" styleClass="dashboard-link" />
-
-            |
-
-            <h:form rendered="#{authBean.logged}" style="display:inline;">
-                <h:commandLink value="Logout" action="#{authBean.logout}" styleClass="logout-btn" />
-            </h:form>
+            <h:link outcome="login.xhtml" value="Back to Login" />
 
         </div>
     </div>
