@@ -32,7 +32,7 @@
         </h:form>
 
         <div class="nav-links">
-            <h:link outcome="/default.xhtml" value="Back to Dashboard" /> |
+            <h:link outcome="login.xhtml" value="Back to Login" />
             <h:form rendered="#{authBean.logged}" style="display:inline;">
                 <h:commandLink value="Logout" action="#{authBean.logout}" styleClass="logout-btn" />
             </h:form>
