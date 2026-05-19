@@ -5,12 +5,15 @@ import ebusiness.entity.CustomerOrder;
 import ebusiness.entity.Product;
 import ebusiness.ejb.OrderException;
 import jakarta.ejb.Stateless;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.util.Date;
 import java.util.List;
 
 @Stateless
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class OrderEJB {
 
     @PersistenceContext(unitName = "RetailStorePU")
