@@ -27,15 +27,17 @@ public class ProductController {
     private List<Product> productList;
 
     public String doCreateTablet() {
-        if (!validateProduct(tablet)) return null;
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        if (!validateProduct(tablet, ctx)) return null;
         try {
             productEJB.createTablet(tablet);
             tabletList = null;     // invalidate cache so getter refreshes
             tabletList = productEJB.findTablets();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Successfully created the tablet: " + tablet.getBrandModel()));
+            ctx.addMessage(null, new FacesMessage("Successfully created the tablet: " + tablet.getBrandModel()));
             return "listTablets.xhtml";
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Failed to create tablet"));        return null;
+            ctx.addMessage(null, new FacesMessage("Failed to create tablet"));
+            return null;
         }
     }
 
@@ -53,8 +55,7 @@ public class ProductController {
         }
     }
 
-    private boolean validateProduct(Product product) {
-        FacesContext ctx = FacesContext.getCurrentInstance();
+    private boolean validateProduct(Product product, FacesContext ctx) {
         if (ValidationUtil.isBlank(product.getBrand())) ctx.addMessage(null, new FacesMessage("Brand is required."));
         if (ValidationUtil.isBlank(product.getModel())) ctx.addMessage(null, new FacesMessage("Model is required."));
         if (!ValidationUtil.isPositive(product.getPrice())) ctx.addMessage(null, new FacesMessage("Price must be greater than zero."));
