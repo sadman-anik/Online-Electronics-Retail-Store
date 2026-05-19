@@ -19,7 +19,7 @@
 # EnterpriseApps Folder
 
 Create this structure:
-
+ 
 ```text
 $HOME/EnterpriseApps/
 ├── glassfish7
