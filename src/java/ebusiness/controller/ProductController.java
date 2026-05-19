@@ -36,7 +36,13 @@ public class ProductController {
             ctx.addMessage(null, new FacesMessage("Successfully created the tablet: " + tablet.getBrandModel()));
             return "listTablets.xhtml";
         } catch (Exception e) {
-            ctx.addMessage(null, new FacesMessage("Failed to create tablet"));
+            ctx.addMessage(
+                null,
+                new FacesMessage(
+                    FacesMessage.SEVERITY_ERROR,
+                    "Failed to create tablet" + e.getMessage()
+                )
+            );
             return null;
         }
     }
