@@ -37,9 +37,10 @@ public class AuthenticationController implements Serializable {
 
     public String validateUser() {
         FacesContext context = FacesContext.getCurrentInstance();
-        Wuser user = authenticationEJB.findByUsername(username);
+        String loginUsername = ValidationUtil.trimToEmpty(username);
+        Wuser user = authenticationEJB.findByUsername(loginUsername);
         if (user == null) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Failed!", "Username '" + username + "' does not exist."));
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Failed!", "Username '" + loginUsername + "' does not exist."));
             username = null;
             password = null;
             return null;
@@ -59,6 +60,7 @@ public class AuthenticationController implements Serializable {
 
     public String createVerificationCode() {
         FacesContext context = FacesContext.getCurrentInstance();
+        email = ValidationUtil.trimToEmpty(email);
         if (ValidationUtil.isBlank(email)) {
             context.addMessage(null, new FacesMessage("Email address is required."));
             return null;
