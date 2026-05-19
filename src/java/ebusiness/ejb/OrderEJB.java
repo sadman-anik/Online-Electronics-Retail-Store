@@ -47,7 +47,8 @@ public class OrderEJB {
             throw new OrderException(product.getBrandModel() + " is currently out of stock.");
         }
         if (product.getStockNumber() < quantity) {
-            throw new OrderException("Not enough stock for " + product.getBrandModel() + ".");
+            throw new OrderException("Only " + product.getStockNumber() + " units remain for "
+                    + product.getBrandModel() + ". Please reduce the order quantity.");
         }
 
         CustomerOrder order = new CustomerOrder();

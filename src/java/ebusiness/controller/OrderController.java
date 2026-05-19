@@ -44,7 +44,7 @@ public class OrderController {
             return "listOrders.xhtml";
         } catch (OrderException ex) {
             ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Order not created", "Please check the selected product, customer, and quantity. " + ex.getMessage()));
+                    "Order not created", ex.getMessage()));
             return null;
         }
     }
