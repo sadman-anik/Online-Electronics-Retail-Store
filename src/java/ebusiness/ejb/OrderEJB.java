@@ -3,6 +3,7 @@ package ebusiness.ejb;
 import ebusiness.entity.Customer;
 import ebusiness.entity.CustomerOrder;
 import ebusiness.entity.Product;
+import ebusiness.ejb.OrderException;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -16,34 +17,34 @@ public class OrderEJB {
     private EntityManager em;
 
     // Order creation validates inventory before reducing product stock.
-    public CustomerOrder createOrder(Long customerId, Long productId, Integer quantity) throws Exception {
+    public CustomerOrder createOrder(Long customerId, Long productId, Integer quantity) throws OrderException {
         if (customerId == null) {
-            throw new Exception("Customer is required.");
+            throw new OrderException("Customer is required.");
         }
         if (productId == null) {
-            throw new Exception("Product is required.");
+            throw new OrderException("Product is required.");
         }
         if (quantity == null || quantity <= 0) {
-            throw new Exception("Quantity must be greater than zero.");
+            throw new OrderException("Quantity must be greater than zero.");
         }
         if (quantity > 1000) {
-            throw new Exception("Quantity must be 1000 or less.");
+            throw new OrderException("Quantity must be 1000 or less.");
         }
 
         Customer customer = em.find(Customer.class, customerId);
         Product product = em.find(Product.class, productId);
 
         if (customer == null) {
-            throw new Exception("Customer not found.");
+            throw new OrderException("Customer not found.");
         }
         if (product == null) {
-            throw new Exception("Product not found.");
+            throw new OrderException("Product not found.");
         }
         if (product.getStockNumber() == null || product.getStockNumber() <= 0) {
-            throw new Exception(product.getBrandModel() + " is currently out of stock.");
+            throw new OrderException(product.getBrandModel() + " is currently out of stock.");
         }
         if (product.getStockNumber() < quantity) {
-            throw new Exception("Not enough stock for " + product.getBrandModel() + ".");
+            throw new OrderException("Not enough stock for " + product.getBrandModel() + ".");
         }
 
         CustomerOrder order = new CustomerOrder();
@@ -69,10 +70,10 @@ public class OrderEJB {
         return em.find(CustomerOrder.class, id);
     }
 
-    public void deleteOrder(Long id) throws Exception {
+    public void deleteOrder(Long id) throws OrderException {
         CustomerOrder order = em.find(CustomerOrder.class, id);
         if (order == null) {
-            throw new Exception("Order not found.");
+            throw new OrderException("Order not found.");
         }
         Product product = order.getProduct();
         if (product != null && order.getQuantity() != null) {
