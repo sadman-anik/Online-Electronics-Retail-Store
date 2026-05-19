@@ -37,7 +37,7 @@
                 <f:selectItems value="#{orderController.productList}"
                var="p"
                itemValue="#{p.id}"
-               itemLabel="#{p.id} - #{p.brand} #{p.model} (Stock: #{p.stockNumber})"/>
+               itemLabel="#{p.id} - #{p.brand} #{p.model} (Stock: #{p.stockNumber}, Price: $#{p.price})"/>
 
             </h:selectOneMenu>
 

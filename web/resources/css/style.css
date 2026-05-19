@@ -111,6 +111,12 @@ input[type=button]:hover {
     font-weight: bold;
 }
 
+.order-total-preview {
+    margin-top: 10px;
+    color: #556b1f;
+    font-weight: bold;
+}
+
 /* Modern dashboard layout */
 .app-layout {
     display: flex;
