@@ -1,0 +1,12 @@
+# macOS metadata
+.DS_Store
+**/.DS_Store
+
+# Compiled Java and generated archives
+*.class
+*.war
+dist/
+
+# NetBeans and GlassFish generated/local files
+nbproject/private/
+build/web/gfv*.dpf
