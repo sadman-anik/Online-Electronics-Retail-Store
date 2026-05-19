@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "PRODUCT")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Product implements Serializable {
 
     @Id
