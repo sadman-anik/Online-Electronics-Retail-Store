@@ -12,7 +12,7 @@
 | Jakarta EE | 10 |
 | JSF | 4.x |
 | EclipseLink | 4.x |
-| FakeSMTP | 2.0 |
+| FakeSMTP | 2.0 |  
 
 ---
 
