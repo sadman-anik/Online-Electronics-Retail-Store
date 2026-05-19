@@ -24,16 +24,25 @@ public class CustomerController {
     private List<Customer> customerList = new ArrayList<>();
 
     public String doCreateCustomer() {
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        if (ValidationUtil.isBlank(customer.getName())) ctx.addMessage(null, new FacesMessage("Customer name is required."));
-        if (ValidationUtil.isBlank(customer.getAddress())) ctx.addMessage(null, new FacesMessage("Address is required."));
-        if (ValidationUtil.isBlank(customer.getEmailAddress())) ctx.addMessage(null, new FacesMessage("Email address is required."));
-        if (!ctx.getMessageList().isEmpty()) return null;
+        if (!validateCustomer(customer))
+            return null;
 
         customerEJB.createCustomer(customer);
         customerList = customerEJB.findCustomers();
         ctx.addMessage(null, new FacesMessage("Successfully created the customer: " + customer.getName()));
         return "listCustomers.xhtml";
+    }
+
+    private Boolean validateCustomer(Customer customer) {
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        if (ValidationUtil.isBlank(customer.getName()))
+            ctx.addMessage(null, new FacesMessage("Customer name is required."));
+        if (ValidationUtil.isBlank(customer.getAddress()))
+            ctx.addMessage(null, new FacesMessage("Address is required."));
+        if (ValidationUtil.isBlank(customer.getEmailAddress()))
+            ctx.addMessage(null, new FacesMessage("Email address is required."));
+        
+        return ctx.getMessageList().isEmpty();
     }
 
     public String doSearchCustomer() {
