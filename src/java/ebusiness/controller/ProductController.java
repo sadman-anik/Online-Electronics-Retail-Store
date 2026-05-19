@@ -67,7 +67,12 @@ public class ProductController {
     public void setSmartwatch(Smartwatch smartwatch) { this.smartwatch = smartwatch; }
     public String getSearchModel() { return searchModel; }
     public void setSearchModel(String searchModel) { this.searchModel = searchModel; }
-    public List<Tablet> getTabletList() { return productEJB.findTablets(); }
+    public List<Tablet> getTabletList() {
+        if (tabletList == null) {
+            tabletList = productEJB.findTablets();
+        }
+        return tabletList;
+    }
     public void setTabletList(List<Tablet> tabletList) { this.tabletList = tabletList; }
     public List<Smartwatch> getSmartwatchList() { return productEJB.findSmartwatches(); }
     public void setSmartwatchList(List<Smartwatch> smartwatchList) { this.smartwatchList = smartwatchList; }
