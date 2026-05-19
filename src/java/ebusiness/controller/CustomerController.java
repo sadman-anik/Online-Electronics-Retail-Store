@@ -37,7 +37,7 @@ public class CustomerController {
     }
 
     public String doSearchCustomer() {
-        customerList = customerEJB.searchCustomers(searchName == null ? "" : searchName);
+        customerList = customerEJB.searchCustomers(ValidationUtil.trimToEmpty(searchName));
         return "foundCustomers.xhtml";
     }
 
