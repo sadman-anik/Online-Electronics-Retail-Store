@@ -2,7 +2,7 @@
 
 echo "Starting MySQL..."
 sudo /usr/local/mysql/support-files/mysql.server start
-
+ 
 echo ""
 echo "Checking retailestoredb database..."
 MYSQL_USER=${MYSQL_USER:-root}
