@@ -5,11 +5,6 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "PRODUCT")
-@Inheritance(strategy = InheritanceType.JOINED)
-@NamedQueries({
-    @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p ORDER BY p.id"),
-    @NamedQuery(name = "Product.findByModel", query = "SELECT p FROM Product p WHERE LOWER(p.model) LIKE LOWER(:model)")
-})
 public abstract class Product implements Serializable {
 
     @Id
@@ -28,15 +23,6 @@ public abstract class Product implements Serializable {
     private String connectivity;
     private Boolean wifiCapable;
 
-    @Column(nullable = false)
-    private Double price;
-
-    @Column(nullable = false)
-    private Integer stockNumber;
-
-    @Column(length = 2000)
-    private String description;
-
     public Long getId() { return id; }
     public String getBrand() { return brand; }
     public void setBrand(String brand) { this.brand = brand; }
@@ -52,14 +38,4 @@ public abstract class Product implements Serializable {
     public void setConnectivity(String connectivity) { this.connectivity = connectivity; }
     public Boolean getWifiCapable() { return wifiCapable; }
     public void setWifiCapable(Boolean wifiCapable) { this.wifiCapable = wifiCapable; }
-    public Double getPrice() { return price; }
-    public void setPrice(Double price) { this.price = price; }
-    public Integer getStockNumber() { return stockNumber; }
-    public void setStockNumber(Integer stockNumber) { this.stockNumber = stockNumber; }
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
-
-    public String getBrandModel() {
-        return brand + " " + model;
-    }
 }
