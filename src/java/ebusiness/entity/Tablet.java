@@ -5,6 +5,16 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "TABLET")
+@NamedQueries({
+    @NamedQuery(
+        name = "Tablet.findAll",
+        query = "SELECT t FROM Tablet t ORDER BY t.id"
+    ),
+    @NamedQuery(
+        name = "Tablet.searchByModel",
+        query = "SELECT t FROM Tablet t WHERE LOWER(t.model) LIKE LOWER(:model)"
+    )
+})
 public class Tablet extends Product implements Serializable {
 
     private String storageCapacity;
