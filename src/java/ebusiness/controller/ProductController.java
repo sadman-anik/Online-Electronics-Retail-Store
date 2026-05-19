@@ -74,7 +74,12 @@ public class ProductController {
         return tabletList;
     }
     public void setTabletList(List<Tablet> tabletList) { this.tabletList = tabletList; }
-    public List<Smartwatch> getSmartwatchList() { return productEJB.findSmartwatches(); }
+    public List<Smartwatch> getSmartwatchList() {
+        if (smartwatchList == null) {
+            smartwatchList = productEJB.findSmartwatches();
+        }
+        return smartwatchList;
+    }
     public void setSmartwatchList(List<Smartwatch> smartwatchList) { this.smartwatchList = smartwatchList; }
     public List<Product> getProductList() { return productEJB.findProducts(); }
     public void setProductList(List<Product> productList) { this.productList = productList; }
