@@ -28,11 +28,15 @@ public class ProductController {
 
     public String doCreateTablet() {
         if (!validateProduct(tablet)) return null;
-        productEJB.createTablet(tablet);
-        tabletList = null;     // invalidate cache so getter refreshes
-        tabletList = productEJB.findTablets();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Successfully created the tablet: " + tablet.getBrandModel()));
-        return "listTablets.xhtml";
+        try {
+            productEJB.createTablet(tablet);
+            tabletList = null;     // invalidate cache so getter refreshes
+            tabletList = productEJB.findTablets();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Successfully created the tablet: " + tablet.getBrandModel()));
+            return "listTablets.xhtml";
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Failed to create tablet"));        return null;
+        }
     }
 
     public String doCreateSmartwatch() {
