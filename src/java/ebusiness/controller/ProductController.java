@@ -41,11 +41,16 @@ public class ProductController {
 
     public String doCreateSmartwatch() {
         if (!validateProduct(smartwatch)) return null;
-        productEJB.createSmartwatch(smartwatch);
-        smartwatchList = null;     // invalidate cache so getter refreshes
-        smartwatchList = productEJB.findSmartwatches();
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Successfully created the smartwatch: " + smartwatch.getBrandModel()));
-        return "listSmartwatches.xhtml";
+        try {
+            productEJB.createSmartwatch(smartwatch);
+            smartwatchList = null;     // invalidate cache so getter refreshes
+            smartwatchList = productEJB.findSmartwatches();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Successfully created the smartwatch: " + smartwatch.getBrandModel()));
+            return "listSmartwatches.xhtml";
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Failed to create smartwatch"));
+            return null;
+        }
     }
 
     private boolean validateProduct(Product product) {
