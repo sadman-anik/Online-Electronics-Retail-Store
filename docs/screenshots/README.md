@@ -2,6 +2,12 @@
 
 This folder contains screenshots of the Online Electronics Retail Store web application.
 
+## Dashboard
+
+![Dashboard page](dashboard.png)
+
+Dashboard with sidebar navigation, summary cards, quick actions, and logout control.
+
 ## Account Login
 
 ![Account login page](account-login.png)
@@ -10,9 +16,19 @@ Login page with links for account recovery and new account registration.
 
 ## Create Account
 
+![Verify email page](verify-email.png)
+
+Email verification form used to generate a registration verification code.
+
 ![Create account page](create-account.png)
 
 Registration page with verification code fields and password validation feedback.
+
+## Email Testing
+
+![Fake SMTP verification email](fakesmtp-verification-email.png)
+
+Fake SMTP Server receiving the registration verification email during local testing.
 
 ## Recover Account
 
@@ -30,11 +46,23 @@ Recovery code and password reset page.
 
 Tablet creation form with product specification, price, stock, and description fields.
 
+## Create Smartwatch
+
+![Create smartwatch page](create-smartwatch.png)
+
+Smartwatch creation form with product specification, price, stock, health, fitness, and wearable connectivity fields.
+
 ## Tablet List
 
 ![Tablet list page](tablet-list.png)
 
 Tablet stock list with search and navigation actions.
+
+## Smartwatch List
+
+![Smartwatch list page](smartwatch-list.png)
+
+Smartwatch stock list showing wearable product details, stock, health monitoring, and fitness tracking.
 
 ## Add Customer
 
@@ -52,7 +80,7 @@ Customer list showing customer details, order count, and navigation actions.
 
 ![Create order page](create-order.png)
 
-Order creation form showing product stock validation when the requested quantity is higher than available stock.
+Order creation form showing product stock, unit price, and estimated total before the order is submitted.
 
 ## Order List
 

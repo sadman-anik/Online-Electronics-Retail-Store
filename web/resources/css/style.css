@@ -266,6 +266,7 @@ input[type=button]:hover {
 .card-btn {
     display: inline-block;
     margin-top: 12px;
+    margin-right: 10px;
     background: #c7db5c;
     color: #1f2937 !important;
     text-decoration: none;
