@@ -50,7 +50,7 @@ public class ProductController {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Successfully created the smartwatch: " + smartwatch.getBrandModel()));
             return "listSmartwatches.xhtml";
         } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Failed to create smartwatch"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Failed to create smartwatch" + e.getMessage()));
             return null;
         }
     }
