@@ -3,6 +3,7 @@ package ebusiness.ejb;
 import ebusiness.entity.Product;
 import ebusiness.entity.Smartwatch;
 import ebusiness.entity.Tablet;
+import ebusiness.ejb.ProductException;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -51,6 +52,9 @@ public class ProductEJB {
     }
 
     public Product findProductById(Long id) {
+        if (id == null) {
+            return null;
+        }
         return em.find(Product.class, id);
     }
 
