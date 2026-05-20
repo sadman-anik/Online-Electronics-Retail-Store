@@ -23,10 +23,11 @@
 
         <h:panelGrid columns="2" cellpadding="8">
 
-            <h:outputLabel value="Customer Name"/>
+            <h:outputLabel value="Customer Name" styleClass="required-label"/>
 
             <h:inputText value="#{customerController.searchName}"
-                         required="true"/>
+                         required="true"
+                         requiredMessage="Customer name is required."/>
 
         </h:panelGrid>
 

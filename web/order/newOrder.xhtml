@@ -24,7 +24,7 @@
 
         <h:panelGrid columns="2" cellpadding="8">
 
-            <h:outputLabel for="product" value="Product"/>
+            <h:outputLabel for="product" value="Product" styleClass="required-label"/>
 
             <h:selectOneMenu id="product"
                              value="#{orderController.productId}"
@@ -41,7 +41,7 @@
 
             </h:selectOneMenu>
 
-            <h:outputLabel for="quantity" value="Quantity"/>
+            <h:outputLabel for="quantity" value="Quantity" styleClass="required-label"/>
 
             <h:inputText id="quantity"
                          value="#{orderController.quantity}"
@@ -56,7 +56,7 @@
 
         <h:panelGrid columns="2" cellpadding="8">
 
-            <h:outputLabel for="customer" value="Select Customer"/>
+            <h:outputLabel for="customer" value="Select Customer" styleClass="required-label"/>
 
             <h:selectOneMenu id="customer"
                              value="#{orderController.customerId}"

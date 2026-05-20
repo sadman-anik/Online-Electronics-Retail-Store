@@ -23,10 +23,11 @@
 
         <h:panelGrid columns="2" cellpadding="8">
 
-            <h:outputLabel value="Smartwatch Model"/>
+            <h:outputLabel value="Smartwatch Model" styleClass="required-label"/>
 
             <h:inputText value="#{productController.searchModel}"
-                         required="true"/>
+                         required="true"
+                         requiredMessage="Smartwatch model is required."/>
 
         </h:panelGrid>
 

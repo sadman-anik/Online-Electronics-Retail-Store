@@ -344,3 +344,9 @@ input[type=button]:hover {
     color: #c0392b;
     font-weight: bold;
 }
+
+.required-label::after {
+    content: " *";
+    color: #c0392b;
+    font-weight: bold;
+}
