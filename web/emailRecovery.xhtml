@@ -27,7 +27,11 @@
 
             <h:inputText value="#{authBean.email}"
                          required="true"
-                         requiredMessage="Email address is required."/>
+                         requiredMessage="Email address is required."
+                         validatorMessage="Please enter a valid email address.">
+                <f:validateRegex
+                    pattern="^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"/>
+            </h:inputText>
 
         </h:panelGrid>
 
