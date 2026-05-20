@@ -60,14 +60,25 @@ public class ProductEJB {
 
     public void reduceStock(Product product, int quantity)
         throws ProductException {
-        Product managed = em.find(Product.class, product.getId());
+        if (product == null || product.getId() == null) {
+            throw new ProductException("Product is required.");
+        }
+        if (quantity <= 0) {
+            throw new ProductException("Quantity must be greater than zero.");
+        }
 
-        if (product.getStockNumber() < quantity) {
+        Product managed = em.find(Product.class, product.getId());
+        if (managed == null) {
+            throw new ProductException("Product not found.");
+        }
+        Integer currentStock = managed.getStockNumber();
+        if (currentStock == null || currentStock < quantity) {
             throw new ProductException(
-                "Not enough stock for " + product.getBrandModel() + "."
+                "Not enough stock for " + managed.getBrandModel() + "."
             );
         }
-        managed.setStockNumber(managed.getStockNumber() - quantity);
+
+        managed.setStockNumber(currentStock - quantity);
     }
 
     public void restoreStock(Product product, int quantity) {
