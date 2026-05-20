@@ -58,7 +58,14 @@ public class CustomerController {
     }
 
     public String doSearchCustomer() {
-        customerList = customerEJB.searchCustomers(ValidationUtil.trimToEmpty(searchName));
+        searchName = ValidationUtil.trimToEmpty(searchName);
+        if (ValidationUtil.isBlank(searchName)) {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Customer name is required for search.", null));
+            return null;
+        }
+        customerList = customerEJB.searchCustomers(searchName);
         return "foundCustomers.xhtml";
     }
 
