@@ -38,6 +38,11 @@ public class AuthenticationController implements Serializable {
     public String validateUser() {
         FacesContext context = FacesContext.getCurrentInstance();
         String loginUsername = ValidationUtil.trimToEmpty(username);
+        if (ValidationUtil.isBlank(loginUsername) || ValidationUtil.isBlank(password)) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Login Failed!", "Username and password are required."));
+            return null;
+        }
         Wuser user = authenticationEJB.findByUsername(loginUsername);
         if (user == null) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Failed!", "Username '" + loginUsername + "' does not exist."));
