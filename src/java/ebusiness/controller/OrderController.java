@@ -67,6 +67,11 @@ public class OrderController {
 
     public String doDeleteOrder(Long id) {
         FacesContext ctx = FacesContext.getCurrentInstance();
+        if (id == null) {
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Delete failed", "Order id is required."));
+            return "listOrders.xhtml";
+        }
         try {
             orderEJB.deleteOrder(id);
             ctx.addMessage(null, new FacesMessage("The order has been deleted."));
