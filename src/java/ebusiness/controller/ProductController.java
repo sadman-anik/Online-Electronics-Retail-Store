@@ -89,10 +89,15 @@ public class ProductController {
     }
 
     private boolean validateProduct(Product product, FacesContext ctx) {
-        if (ValidationUtil.isBlank(product.getBrand())) ctx.addMessage(null, new FacesMessage("Brand is required."));
-        if (ValidationUtil.isBlank(product.getModel())) ctx.addMessage(null, new FacesMessage("Model is required."));
-        if (!ValidationUtil.isPositive(product.getPrice())) ctx.addMessage(null, new FacesMessage("Price must be greater than zero."));
-        if (!ValidationUtil.isPositive(product.getStockNumber())) ctx.addMessage(null, new FacesMessage("Stock number must be greater than zero."));
+        if (ValidationUtil.isBlank(product.getBrand()))
+            ctx.addMessage(null, new FacesMessage("Brand is required."));
+        if (ValidationUtil.isBlank(product.getModel()))
+            ctx.addMessage(null, new FacesMessage("Model is required."));
+        if (!ValidationUtil.isPositive(product.getPrice()))
+            ctx.addMessage(null, new FacesMessage("Price must be greater than zero."));
+        if (!ValidationUtil.isPositive(product.getStockNumber()))
+            ctx.addMessage(null, new FacesMessage("Stock number must be greater than zero."));
+        
         return ctx.getMessageList().isEmpty();
     }
 
