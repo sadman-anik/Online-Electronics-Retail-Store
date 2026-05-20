@@ -28,12 +28,21 @@ public class ProductController {
 
     public String doCreateTablet() {
         FacesContext ctx = FacesContext.getCurrentInstance();
-        if (!validateProduct(tablet, ctx)) return null;
+
+        if (!validateProduct(tablet, ctx))
+            return null;
+
         try {
             productEJB.createTablet(tablet);
             tabletList = null;     // invalidate cache so getter refreshes
             tabletList = productEJB.findTablets();
-            ctx.addMessage(null, new FacesMessage("Successfully created the tablet: " + tablet.getBrandModel()));
+            ctx.addMessage(
+                null,
+                new FacesMessage(
+                    "Successfully created the tablet: " + tablet.getBrandModel()
+                )
+            );
+            
             return "listTablets.xhtml";
         } catch (Exception e) {
             ctx.addMessage(
@@ -43,21 +52,38 @@ public class ProductController {
                     "Failed to create tablet" + e.getMessage()
                 )
             );
+            
             return null;
         }
     }
 
     public String doCreateSmartwatch() {
         FacesContext ctx = FacesContext.getCurrentInstance();
-        if (!validateProduct(smartwatch, ctx)) return null;
+
+        if (!validateProduct(smartwatch, ctx))
+            return null;
+        
         try {
             productEJB.createSmartwatch(smartwatch);
             smartwatchList = null;     // invalidate cache so getter refreshes
             smartwatchList = productEJB.findSmartwatches();
-            ctx.addMessage(null, new FacesMessage("Successfully created the smartwatch: " + smartwatch.getBrandModel()));
+            ctx.addMessage(
+                null,
+                new FacesMessage(
+                    "Successfully created the smartwatch: " + smartwatch.getBrandModel()
+                )
+            );
+            
             return "listSmartwatches.xhtml";
         } catch (Exception e) {
-            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Failed to create smartwatch" + e.getMessage()));
+            ctx.addMessage(
+                null,
+                new FacesMessage(
+                    FacesMessage.SEVERITY_ERROR,
+                    "Failed to create smartwatch" + e.getMessage()
+                )
+            );
+            
             return null;
         }
     }
