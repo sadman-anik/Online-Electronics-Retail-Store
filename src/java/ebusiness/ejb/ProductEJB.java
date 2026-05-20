@@ -3,7 +3,6 @@ package ebusiness.ejb;
 import ebusiness.entity.Product;
 import ebusiness.entity.Smartwatch;
 import ebusiness.entity.Tablet;
-import ebusiness.ejb.ProductException;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
