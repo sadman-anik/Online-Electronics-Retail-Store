@@ -10,10 +10,13 @@ import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Named("customerController")
 @RequestScoped
 public class CustomerController {
+    private static final Logger LOGGER = Logger.getLogger(CustomerController.class.getName());
 
     @EJB
     private CustomerEJB customerEJB;
@@ -35,7 +38,10 @@ public class CustomerController {
             ctx.addMessage(null, new FacesMessage("Successfully created the customer: " + customer.getName()));
             return "listCustomers.xhtml";
         } catch (Exception e) {
-            ctx.addMessage(null, new FacesMessage("Failed to create the customer: " + customer.getName()));
+            LOGGER.log(Level.SEVERE, "Failed to create customer: " + customer.getName(), e);
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Create customer failed",
+                    "Unable to save customer right now. Please check the details and try again."));
             return null;
         }
     }
