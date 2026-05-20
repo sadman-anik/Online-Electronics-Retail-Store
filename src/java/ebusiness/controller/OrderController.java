@@ -12,6 +12,7 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import java.util.Collections;
 import java.util.List;
 
 @Named("orderController")
@@ -81,4 +82,7 @@ public class OrderController {
     public Long getSearchOrderId() { return searchOrderId; }
     public void setSearchOrderId(Long searchOrderId) { this.searchOrderId = searchOrderId; }
     public CustomerOrder getFoundOrder() { return foundOrder; }
+    public List<CustomerOrder> getFoundOrderList() {
+        return foundOrder == null ? Collections.emptyList() : Collections.singletonList(foundOrder);
+    }
 }
