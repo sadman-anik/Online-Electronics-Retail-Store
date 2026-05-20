@@ -149,6 +149,16 @@ public class AuthenticationController implements Serializable {
             context.addMessage(null, new FacesMessage("Recovery session expired. Please start again."));
             return "emailRecovery.xhtml";
         }
+        if (ValidationUtil.isBlank(password) || ValidationUtil.isBlank(passwordv)) {
+            context.addMessage(null, new FacesMessage("Password and password verification are required."));
+            return null;
+        }
+        if (!ValidationUtil.isStrongPassword(password)) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Password requirements not met",
+                    "Use at least 8 characters with uppercase, lowercase, number, and special character."));
+            return null;
+        }
         if (!password.equals(passwordv)) {
             context.addMessage(null, new FacesMessage("The specified passwords do not match, please try again!"));
             return null;
