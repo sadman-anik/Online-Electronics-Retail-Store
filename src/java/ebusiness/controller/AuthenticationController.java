@@ -170,7 +170,7 @@ public class AuthenticationController implements Serializable {
         recoveryUser.setPassword(PasswordUtil.hashPassword(password));
         authenticationEJB.updateUser(recoveryUser);
         clearFields();
-        return "index.xhtml?faces-redirect=true";
+        return "login.xhtml?faces-redirect=true";
     }
 
     private String generateCode() {
