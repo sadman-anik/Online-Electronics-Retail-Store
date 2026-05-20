@@ -125,6 +125,11 @@ public class AuthenticationController implements Serializable {
 
     public String createRecoveryCode() {
         FacesContext context = FacesContext.getCurrentInstance();
+        email = ValidationUtil.trimToEmpty(email);
+        if (ValidationUtil.isBlank(email)) {
+            context.addMessage(null, new FacesMessage("Email address is required."));
+            return null;
+        }
         recoveryUser = authenticationEJB.findByEmail(email);
         if (recoveryUser == null) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Email!", "Email '" + email + "' does not exist."));
