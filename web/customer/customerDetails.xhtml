@@ -40,11 +40,12 @@
 
     </h:panelGrid>
 
-    <h2>Orders</h2>
+    <h2 rendered="#{customerController.selectedCustomer != null}">Orders</h2>
 
     <h:dataTable value="#{customerController.selectedCustomer.orders}"
                  var="o"
-                 border="1">
+                 border="1"
+                 rendered="#{customerController.selectedCustomer != null}">
 
         <h:column>
             <f:facet name="header">Order #</f:facet>
@@ -77,6 +78,10 @@
         </h:column>
 
     </h:dataTable>
+
+    <h:panelGroup rendered="#{customerController.selectedCustomer == null}">
+        <h:outputText value="No customer selected. Please open a customer from the customer list."/>
+    </h:panelGroup>
 
     <br/>
 

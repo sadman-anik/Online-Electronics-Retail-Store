@@ -12,6 +12,7 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import java.util.Collections;
 import java.util.List;
 
 @Named("orderController")
@@ -50,6 +51,12 @@ public class OrderController {
     }
 
     public String doSearchOrder() {
+        if (searchOrderId == null) {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Order ID is required.", null));
+            return null;
+        }
         foundOrder = orderEJB.findOrderById(searchOrderId);
         if (foundOrder == null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Order not found."));
@@ -60,6 +67,11 @@ public class OrderController {
 
     public String doDeleteOrder(Long id) {
         FacesContext ctx = FacesContext.getCurrentInstance();
+        if (id == null) {
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Delete failed", "Order id is required."));
+            return "listOrders.xhtml";
+        }
         try {
             orderEJB.deleteOrder(id);
             ctx.addMessage(null, new FacesMessage("The order has been deleted."));
@@ -81,4 +93,7 @@ public class OrderController {
     public Long getSearchOrderId() { return searchOrderId; }
     public void setSearchOrderId(Long searchOrderId) { this.searchOrderId = searchOrderId; }
     public CustomerOrder getFoundOrder() { return foundOrder; }
+    public List<CustomerOrder> getFoundOrderList() {
+        return foundOrder == null ? Collections.emptyList() : Collections.singletonList(foundOrder);
+    }
 }

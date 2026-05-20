@@ -88,9 +88,11 @@
         <h:link outcome="/login.xhtml" value="Back to Login"/>
     </div>
 
-    <h:link outcome="logout.xhtml"
-            value="Logout"
-            rendered="#{authBean.logged}"/>
+    <h:form rendered="#{authBean.logged}">
+        <h:commandLink value="Logout"
+                       action="#{authBean.logout}"
+                       styleClass="logout-btn"/>
+    </h:form>
 
 </div>
 </h:body>

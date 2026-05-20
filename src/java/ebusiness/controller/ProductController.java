@@ -104,12 +104,26 @@ public class ProductController {
     }
 
     public String doSearchTablet() {
-        tabletList = productEJB.searchTablets(ValidationUtil.trimToEmpty(searchModel));
+        searchModel = ValidationUtil.trimToEmpty(searchModel);
+        if (ValidationUtil.isBlank(searchModel)) {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Model is required for tablet search.", null));
+            return null;
+        }
+        tabletList = productEJB.searchTablets(searchModel);
         return "foundTablets.xhtml";
     }
 
     public String doSearchSmartwatch() {
-        smartwatchList = productEJB.searchSmartwatches(ValidationUtil.trimToEmpty(searchModel));
+        searchModel = ValidationUtil.trimToEmpty(searchModel);
+        if (ValidationUtil.isBlank(searchModel)) {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Model is required for smartwatch search.", null));
+            return null;
+        }
+        smartwatchList = productEJB.searchSmartwatches(searchModel);
         return "foundSmartwatches.xhtml";
     }
 

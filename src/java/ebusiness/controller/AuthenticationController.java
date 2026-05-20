@@ -38,6 +38,12 @@ public class AuthenticationController implements Serializable {
     public String validateUser() {
         FacesContext context = FacesContext.getCurrentInstance();
         String loginUsername = ValidationUtil.trimToEmpty(username);
+        username = loginUsername;
+        if (ValidationUtil.isBlank(loginUsername) || ValidationUtil.isBlank(password)) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Login Failed!", "Username and password are required."));
+            return null;
+        }
         Wuser user = authenticationEJB.findByUsername(loginUsername);
         if (user == null) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Failed!", "Username '" + loginUsername + "' does not exist."));
@@ -84,6 +90,11 @@ public class AuthenticationController implements Serializable {
 
     public String createUser() {
         FacesContext context = FacesContext.getCurrentInstance();
+        fname = ValidationUtil.trimToEmpty(fname);
+        lname = ValidationUtil.trimToEmpty(lname);
+        username = ValidationUtil.trimToEmpty(username);
+        email = ValidationUtil.trimToEmpty(email);
+        verificationcode = ValidationUtil.trimToEmpty(verificationcode);
         if (ValidationUtil.isBlank(fname) || ValidationUtil.isBlank(lname) || ValidationUtil.isBlank(username)
                 || ValidationUtil.isBlank(password) || ValidationUtil.isBlank(passwordv)) {
             context.addMessage(null, new FacesMessage("All fields are required."));
@@ -125,6 +136,11 @@ public class AuthenticationController implements Serializable {
 
     public String createRecoveryCode() {
         FacesContext context = FacesContext.getCurrentInstance();
+        email = ValidationUtil.trimToEmpty(email);
+        if (ValidationUtil.isBlank(email)) {
+            context.addMessage(null, new FacesMessage("Email address is required."));
+            return null;
+        }
         recoveryUser = authenticationEJB.findByEmail(email);
         if (recoveryUser == null) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Email!", "Email '" + email + "' does not exist."));
@@ -145,9 +161,20 @@ public class AuthenticationController implements Serializable {
 
     public String resetUser() {
         FacesContext context = FacesContext.getCurrentInstance();
+        verificationcode = ValidationUtil.trimToEmpty(verificationcode);
         if (recoveryUser == null) {
             context.addMessage(null, new FacesMessage("Recovery session expired. Please start again."));
             return "emailRecovery.xhtml";
+        }
+        if (ValidationUtil.isBlank(password) || ValidationUtil.isBlank(passwordv)) {
+            context.addMessage(null, new FacesMessage("Password and password verification are required."));
+            return null;
+        }
+        if (!ValidationUtil.isStrongPassword(password)) {
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Password requirements not met",
+                    "Use at least 8 characters with uppercase, lowercase, number, and special character."));
+            return null;
         }
         if (!password.equals(passwordv)) {
             context.addMessage(null, new FacesMessage("The specified passwords do not match, please try again!"));
@@ -160,7 +187,7 @@ public class AuthenticationController implements Serializable {
         recoveryUser.setPassword(PasswordUtil.hashPassword(password));
         authenticationEJB.updateUser(recoveryUser);
         clearFields();
-        return "index.xhtml?faces-redirect=true";
+        return "login.xhtml?faces-redirect=true";
     }
 
     private String generateCode() {

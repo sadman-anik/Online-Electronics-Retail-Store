@@ -4,10 +4,10 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
 
-    <display-name>Online Electronics Retails Store</display-name>
+    <display-name>Online Electronics Retail Store</display-name>
 
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
 
     <servlet>

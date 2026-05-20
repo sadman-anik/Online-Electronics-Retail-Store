@@ -10,16 +10,21 @@ import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Named("customerController")
 @RequestScoped
 public class CustomerController {
+    private static final Logger LOGGER = Logger.getLogger(CustomerController.class.getName());
 
     @EJB
     private CustomerEJB customerEJB;
 
     private Customer customer = new Customer();
     private Long selectedCustomerId;
+    private Customer selectedCustomer;
+    private boolean selectedCustomerResolved;
     private String searchName;
     private List<Customer> customerList = new ArrayList<>();
 
@@ -33,7 +38,10 @@ public class CustomerController {
             ctx.addMessage(null, new FacesMessage("Successfully created the customer: " + customer.getName()));
             return "listCustomers.xhtml";
         } catch (Exception e) {
-            ctx.addMessage(null, new FacesMessage("Failed to create the customer: " + customer.getName()));
+            LOGGER.log(Level.SEVERE, "Failed to create customer: " + customer.getName(), e);
+            ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Create customer failed",
+                    "Unable to save customer right now. Please check the details and try again."));
             return null;
         }
     }
@@ -50,13 +58,36 @@ public class CustomerController {
     }
 
     public String doSearchCustomer() {
-        customerList = customerEJB.searchCustomers(ValidationUtil.trimToEmpty(searchName));
+        searchName = ValidationUtil.trimToEmpty(searchName);
+        if (ValidationUtil.isBlank(searchName)) {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Customer name is required for search.", null));
+            return null;
+        }
+        customerList = customerEJB.searchCustomers(searchName);
         return "foundCustomers.xhtml";
     }
 
     public Customer getSelectedCustomer() {
-        if (selectedCustomerId == null) return null;
-        return customerEJB.findCustomerById(selectedCustomerId);
+        if (selectedCustomerId == null) {
+            return null;
+        }
+        if (!selectedCustomerResolved) {
+            selectedCustomer = customerEJB.findCustomerById(selectedCustomerId);
+            selectedCustomerResolved = true;
+            if (selectedCustomer == null) {
+                FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(
+                        FacesMessage.SEVERITY_WARN,
+                        "Customer not found",
+                        "No customer exists for id " + selectedCustomerId + "."
+                    )
+                );
+            }
+        }
+        return selectedCustomer;
     }
 
     public Customer getCustomer() { return customer; }

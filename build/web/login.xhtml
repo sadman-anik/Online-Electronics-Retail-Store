@@ -20,14 +20,16 @@
 
         <h:panelGrid columns="2" cellpadding="8">
 
-            <h:outputLabel value="Username"/>
+            <h:outputLabel value="Username" styleClass="required-label"/>
             <h:inputText value="#{authBean.username}"
                          required="true"
+                         requiredMessage="Username is required."
                          autocomplete="off"/>
 
-            <h:outputLabel value="Password"/>
+            <h:outputLabel value="Password" styleClass="required-label"/>
             <h:inputSecret value="#{authBean.password}"
-                           required="true"/>
+                           required="true"
+                           requiredMessage="Password is required."/>
 
         </h:panelGrid>
 

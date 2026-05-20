@@ -24,7 +24,7 @@
 
         <h:panelGrid columns="2" cellpadding="8">
 
-            <h:outputLabel value="Recovery Code"/>
+            <h:outputLabel value="Recovery Code" styleClass="required-label"/>
             <h:inputText value="#{authBean.verificationcode}"
                          required="true"
                          requiredMessage="Recovery code is required."/>
@@ -38,13 +38,13 @@
             <h:outputLabel value="Username"/>
             <h:outputText value="#{authBean.recoveryUser.username}"/>
 
-            <h:outputLabel for="password" value="New Password"/>
+            <h:outputLabel for="password" value="New Password" styleClass="required-label"/>
             <h:inputSecret id="password"
                            value="#{authBean.password}"
                            required="true"
                            requiredMessage="New password is required."/>
 
-            <h:outputLabel for="passwordv" value="New Password Verify"/>
+            <h:outputLabel for="passwordv" value="New Password Verify" styleClass="required-label"/>
             <h:inputSecret id="passwordv"
                            value="#{authBean.passwordv}"
                            required="true"
