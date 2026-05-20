@@ -38,6 +38,7 @@ public class AuthenticationController implements Serializable {
     public String validateUser() {
         FacesContext context = FacesContext.getCurrentInstance();
         String loginUsername = ValidationUtil.trimToEmpty(username);
+        username = loginUsername;
         if (ValidationUtil.isBlank(loginUsername) || ValidationUtil.isBlank(password)) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Login Failed!", "Username and password are required."));
