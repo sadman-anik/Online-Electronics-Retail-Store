@@ -42,17 +42,18 @@ public class ProductController {
                     "Successfully created the tablet: " + tablet.getBrandModel()
                 )
             );
-            
+
             return "listTablets.xhtml";
         } catch (Exception e) {
             ctx.addMessage(
                 null,
                 new FacesMessage(
                     FacesMessage.SEVERITY_ERROR,
-                    "Failed to create tablet" + e.getMessage()
+                    "Failed to create tablet",
+                    e.getMessage()
                 )
             );
-            
+
             return null;
         }
     }
@@ -62,7 +63,7 @@ public class ProductController {
 
         if (!validateProduct(smartwatch, ctx))
             return null;
-        
+
         try {
             productEJB.createSmartwatch(smartwatch);
             smartwatchList = null;     // invalidate cache so getter refreshes
@@ -73,17 +74,18 @@ public class ProductController {
                     "Successfully created the smartwatch: " + smartwatch.getBrandModel()
                 )
             );
-            
+
             return "listSmartwatches.xhtml";
         } catch (Exception e) {
             ctx.addMessage(
                 null,
                 new FacesMessage(
                     FacesMessage.SEVERITY_ERROR,
-                    "Failed to create smartwatch" + e.getMessage()
+                    "Failed to create smartwatch",
+                    e.getMessage()
                 )
             );
-            
+
             return null;
         }
     }
@@ -97,7 +99,7 @@ public class ProductController {
             ctx.addMessage(null, new FacesMessage("Price must be greater than zero."));
         if (!ValidationUtil.isPositive(product.getStockNumber()))
             ctx.addMessage(null, new FacesMessage("Stock number must be greater than zero."));
-        
+
         return ctx.getMessageList().isEmpty();
     }
 
