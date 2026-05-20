@@ -7,8 +7,14 @@ import java.io.Serializable;
 @Table(name = "PRODUCT")
 @Inheritance(strategy = InheritanceType.JOINED)
 @NamedQueries({
-    @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p ORDER BY p.id"),
-    @NamedQuery(name = "Product.findByModel", query = "SELECT p FROM Product p WHERE LOWER(p.model) LIKE LOWER(:model)")
+    @NamedQuery(
+        name = "Product.findAll",
+        query = "SELECT p FROM Product p ORDER BY p.id"
+    ),
+    @NamedQuery(
+        name = "Product.findByModel",
+        query = "SELECT p FROM Product p WHERE LOWER(p.model) LIKE LOWER(:model)"
+    )
 })
 public abstract class Product implements Serializable {
 

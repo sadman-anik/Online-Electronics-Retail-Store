@@ -3,6 +3,7 @@ package ebusiness.ejb;
 import ebusiness.entity.Product;
 import ebusiness.entity.Smartwatch;
 import ebusiness.entity.Tablet;
+import ebusiness.ejb.ProductException;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -51,11 +52,21 @@ public class ProductEJB {
     }
 
     public Product findProductById(Long id) {
+        if (id == null) {
+            return null;
+        }
         return em.find(Product.class, id);
     }
 
-    public void reduceStock(Product product, int quantity) {
+    public void reduceStock(Product product, int quantity)
+        throws ProductException {
         Product managed = em.find(Product.class, product.getId());
+
+        if (product.getStockNumber() < quantity) {
+            throw new ProductException(
+                "Not enough stock for " + product.getBrandModel() + "."
+            );
+        }
         managed.setStockNumber(managed.getStockNumber() - quantity);
     }
 
