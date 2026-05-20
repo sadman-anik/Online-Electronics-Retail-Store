@@ -20,6 +20,8 @@ public class CustomerController {
 
     private Customer customer = new Customer();
     private Long selectedCustomerId;
+    private Customer selectedCustomer;
+    private boolean selectedCustomerResolved;
     private String searchName;
     private List<Customer> customerList = new ArrayList<>();
 
@@ -55,8 +57,24 @@ public class CustomerController {
     }
 
     public Customer getSelectedCustomer() {
-        if (selectedCustomerId == null) return null;
-        return customerEJB.findCustomerById(selectedCustomerId);
+        if (selectedCustomerId == null) {
+            return null;
+        }
+        if (!selectedCustomerResolved) {
+            selectedCustomer = customerEJB.findCustomerById(selectedCustomerId);
+            selectedCustomerResolved = true;
+            if (selectedCustomer == null) {
+                FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(
+                        FacesMessage.SEVERITY_WARN,
+                        "Customer not found",
+                        "No customer exists for id " + selectedCustomerId + "."
+                    )
+                );
+            }
+        }
+        return selectedCustomer;
     }
 
     public Customer getCustomer() { return customer; }
