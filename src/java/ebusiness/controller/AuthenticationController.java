@@ -89,6 +89,7 @@ public class AuthenticationController implements Serializable {
 
     public String createUser() {
         FacesContext context = FacesContext.getCurrentInstance();
+        verificationcode = ValidationUtil.trimToEmpty(verificationcode);
         if (ValidationUtil.isBlank(fname) || ValidationUtil.isBlank(lname) || ValidationUtil.isBlank(username)
                 || ValidationUtil.isBlank(password) || ValidationUtil.isBlank(passwordv)) {
             context.addMessage(null, new FacesMessage("All fields are required."));
@@ -155,6 +156,7 @@ public class AuthenticationController implements Serializable {
 
     public String resetUser() {
         FacesContext context = FacesContext.getCurrentInstance();
+        verificationcode = ValidationUtil.trimToEmpty(verificationcode);
         if (recoveryUser == null) {
             context.addMessage(null, new FacesMessage("Recovery session expired. Please start again."));
             return "emailRecovery.xhtml";
