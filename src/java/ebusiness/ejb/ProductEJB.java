@@ -82,7 +82,14 @@ public class ProductEJB {
     }
 
     public void restoreStock(Product product, int quantity) {
+        if (product == null || product.getId() == null || quantity <= 0) {
+            return;
+        }
         Product managed = em.find(Product.class, product.getId());
-        managed.setStockNumber(managed.getStockNumber() + quantity);
+        if (managed == null) {
+            return;
+        }
+        int currentStock = managed.getStockNumber() == null ? 0 : managed.getStockNumber();
+        managed.setStockNumber(currentStock + quantity);
     }
 }
