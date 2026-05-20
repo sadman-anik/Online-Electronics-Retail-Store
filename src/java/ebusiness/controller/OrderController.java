@@ -51,6 +51,12 @@ public class OrderController {
     }
 
     public String doSearchOrder() {
+        if (searchOrderId == null) {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Order ID is required.", null));
+            return null;
+        }
         foundOrder = orderEJB.findOrderById(searchOrderId);
         if (foundOrder == null) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Order not found."));
