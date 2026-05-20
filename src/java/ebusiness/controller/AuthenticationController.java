@@ -89,6 +89,10 @@ public class AuthenticationController implements Serializable {
 
     public String createUser() {
         FacesContext context = FacesContext.getCurrentInstance();
+        fname = ValidationUtil.trimToEmpty(fname);
+        lname = ValidationUtil.trimToEmpty(lname);
+        username = ValidationUtil.trimToEmpty(username);
+        email = ValidationUtil.trimToEmpty(email);
         verificationcode = ValidationUtil.trimToEmpty(verificationcode);
         if (ValidationUtil.isBlank(fname) || ValidationUtil.isBlank(lname) || ValidationUtil.isBlank(username)
                 || ValidationUtil.isBlank(password) || ValidationUtil.isBlank(passwordv)) {
